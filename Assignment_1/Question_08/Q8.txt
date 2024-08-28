@@ -1,0 +1,69 @@
+# Hill Cipher
+S = AlphabeticStrings()
+E = HillCryptosystem(S, 3)
+A = E.random_key()
+B = E.inverse_key(A)
+e = E(A)
+c = E(B)
+
+## encrypting group member name 
+
+# Vedant
+M_ved = S("VEDANT")
+e(M_ved)
+# ciphertext : HMIQBX
+
+# Karan
+M_karan = S("KARANKUMBHAR")
+e(M_karan)
+# ciphertext : ELSSGVYVUTEM
+
+# Lalit
+M_lalit = S("LALITGOUR")
+e(M_lalit)
+# ciphertext : JIKCKNKRA
+
+
+#######################################################
+# Transposition  Cipher
+E = TranspositionCryptosystem(S, 3)
+K = E.random_key()
+Ki = E.inverse_key(K)
+e = E(K)
+d = E(Ki)
+
+# Vedant
+e(M_ved)
+# ciphertext : EDVNTA
+
+# Karan
+e(M_karan)
+# ciphertext : ARKNKAMBUARH
+
+# Lalit Gour
+e(M_Lalit)
+# ciphertext : ALLTGIURO
+
+
+######################################################
+# Vigenere
+E = VigenereCryptosystem(S,3)
+K = E.random_key()
+L = E.inverse_key(K)
+e = E(K)
+c = E(L)
+
+
+# Vedant
+e(M_ved)
+# ciphertext : GEELNU
+
+# Karan
+e(M_karan)
+# ciphertext : VASLNLFMCSAS
+
+# Lalit Gour
+e(M_Lalit)
+# ciphertext : WAMTTHZUS
+
+
