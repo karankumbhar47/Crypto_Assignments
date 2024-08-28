@@ -153,15 +153,48 @@ innertopmargin=\topskip,
 %New problem
 \newpage
 \begin{Problem}
-\textbf{Capture The Flag}\\
-Demonstrate how you solved the CTF that lead you to this Assignment? If your group is
-among the first three teams then, you will receive bonus points. However, every group must
-justify how they got hold of this pdf file.
+    \textbf{Capture The Flag}\\
+    Demonstrate how you solved the CTF that lead you to this Assignment? If your group is
+    among the first three teams then, you will receive bonus points. However, every group must
+    justify how they got hold of this pdf file.
 
-\textbf{Note}: \textit{If you are unable to justify this then the rest of the solutions will not be accepted.}
+    \textbf{Note}: \textit{If you are unable to justify this then the rest of the solutions will not be accepted.}
 \end{Problem}
 
 \begin{Solution}
+
+    Key Points
+    \begin{itemize}
+        \item[1.] We know that link will always start with "https://" which contain pattern.
+        \item[2.] We also know that link will always end with "sharing" which will help to 
+            stop while decrypting link.
+    \end{itemize}
+
+    \textbf{Setps}
+    \begin{enumerate}
+        \item Firstly we created \texttt{cipherText.txt} which contain red and blcak colored cipher text
+              seperated by new line character.
+        \item Then with the help of \texttt{chipherToAscii} function from \texttt{ascii.py}  file, converted all
+              character to corresponding ascii numbers between 0 to 127
+        \item Then we find the pattern which match with encryption of "https://" which
+              contain same characters at 2\textsuperscript{nd} and 3\textsuperscript{rd}. Also same pattern observed with 7\textsuperscript{th}
+              and 8\textsuperscript{th} position. We use \texttt{getPatternIndex}  from \texttt{ascii.py} file for pattern
+              finding. This funtion will return the starting index of such pattern.
+        \item After Finding such pattern we find key $(k_0,k_1,k_2)$ from message and chipher text
+              pairs with eliminating invalid keys. We use \texttt{tryAllKey} and \texttt{getKey} function from 
+              \texttt{utils.py} file to eliminate invalid key with iteration through known message and chipher
+              text pairs.
+        \item After getting a key for particular pattern, We find correspondig link using derived keys
+              from above result and start index of pattern until we get "sharing" at the end of link.
+              We are achieving this with help of funciton \texttt{getLink} from \texttt{utils.py} file
+        \item After getting link for each pattern we will figure out correct link by opening each link. 
+    \end{enumerate}
+    \vspace*{5}
+
+    \textbf{Note} All the files required to get link are attached in current directory of question 1. To get links 
+    run \texttt{attack.py} file. This will dumps multiple links in your terminal with corresponding links.
+    Correct link is one of them.
+
 \end{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
