@@ -51,7 +51,7 @@ frametitlebackgroundcolor=gray!20,
 innertopmargin=\topskip,
 }
 \mdtheorem[style=theoremstyle]{Problem}{Question Number}
-\setcounter{Problem}{0}
+\setcounter{Problem}{4}
 \newenvironment{Solution}{\textbf{Solution.}}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -92,7 +92,7 @@ innertopmargin=\topskip,
 \pagestyle{fancy}
 \headheight 35pt
 \lhead{\today \hspace*{4cm} Key-Breakers}
-\rhead{\includegraphics[width=1.2cm]{logo.png}}
+\rhead{\includegraphics[width=1.2cm]{../logo.png}}
 \lfoot{}
 \pagenumbering{arabic}
 \cfoot{\small\thepage}
@@ -153,6 +153,17 @@ innertopmargin=\topskip,
 %New problem
 \newpage
 \begin{Problem}
+    A key is called involutory when $e_K = d_K$ . Let an Affine Cipher be defined over $\mathbb{Z}_m$ with key
+    $K = (a, b)$.
+    \begin{itemize}
+        \item Prove that K is an involutory key if and only if
+              \[
+                  a^{-1} \mod m = a  \And 
+                  b(a + 1) \equiv 0 \mod m
+              \]
+        \item Now find all involutory keys in $\mathbb{Z}_{15}$ for the Affine Cipher
+        \item Determine the number of keys in an Affine Cipher over $\mathbb{Z}_m$ for $m = 30, 100$ and $1225$.
+    \end{itemize}
 \end{Problem}
 
 \begin{Solution}
