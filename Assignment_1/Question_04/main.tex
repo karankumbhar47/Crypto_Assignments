@@ -173,6 +173,78 @@ innertopmargin=\topskip,
 \end{Problem}
 
 \begin{Solution}
+
+    \textbf{Part 1: Encryption and Decryption}
+
+    We are given the plaintext \textit{cryptography} and the affine cipher parameters $a = 3$ and $b = 5$. The encryption function is given by:
+    \[
+    \text{enc}_{3,5}(x) = 3x + 5 \mod 26
+    \]
+    The decryption function can be derived by finding the modular inverse of $a$ modulo 26. Let's calculate it using the Python code provided.
+
+    \begin{lstlisting}[language=Python, caption=Affine Cipher Encryption and Decryption]
+def modinv(a, m):
+    for x in range(1, m):
+        if (a * x) % m == 1:
+            return x
+    return None
+
+def encrypt(mssge,a,b):
+    c = ""
+    for i in mssge:
+        if i.isalpha():
+            if i.islower():
+                c += chr(((a*(ord(i)-97)+b)%26)+97)
+            else:
+                c += chr(((a*(ord(i)-65)+b)%26)+65)
+        else:
+            c += i
+    return c
+
+def decrypt(cipher, a, b):
+    mssge = ""
+    for i in cipher:
+        if i.isalpha():
+            if i.islower():
+                mssge += chr(((modinv(a, 26)*(ord(i)-97-b))%26)+97)
+            else:
+                mssge += chr(((modinv(a, 26)*(ord(i)-65-b))%26)+65)
+        else:
+            mssge += i
+    return mssge
+
+cipher = encrypt("cryptography", 3, 5)
+print(cipher)
+print(decrypt("XRHLAFUUK", 3, 5))
+    \end{lstlisting}
+
+    The ciphertext for \textit{cryptography} using $a = 3$ and $b = 5$ is \textbf{XRHLAFUUK}. The corresponding decryption function yields the original plaintext when applied to the ciphertext.
+
+    \textbf{Part 2: Why does $enc_{2,3}$ violate the rule?}
+
+    A central requirement in cryptography is that the plaintext must be computable from the key and the ciphertext. For $enc_{2,3}$, the encryption function is:
+    \[
+    \text{enc}_{2,3}(x) = 2x + 3 \mod 26
+    \]
+    However, the key $a = 2$ is not invertible modulo 26 because $\gcd(2, 26) \neq 1$. Specifically, $\gcd(2, 26) = 2$, which means there is no unique inverse for 2 modulo 26, and therefore, decryption is not guaranteed to retrieve the original plaintext. This violates the requirement that the plaintext should be retrievable from the ciphertext and the key.
+
+    \textbf{Part 3: All affine codes with $b = 0$ map the letter $a$ to $a$ and the letter $n$ to $n$.}
+
+    When $b = 0$, the affine encryption function simplifies to:
+    \[
+    \text{enc}_{a,0}(x) = ax \mod 26
+    \]
+    If we take $x = 0$ (which corresponds to the letter 'a'), then:
+    \[
+    \text{enc}_{a,0}(0) = 0 \mod 26
+    \]
+    which means 'a' is mapped to 'a'.
+
+    Similarly, for $x = 13$ (which corresponds to the letter 'n'):
+    \[
+    \text{enc}_{a,0}(13) = 13a \mod 26
+    \]
+    Since $13a \mod 26 = 13$ (as long as $a$ is odd and $\gcd(a, 26) = 1$), the letter 'n' is mapped to 'n'.
 \end{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

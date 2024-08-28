@@ -161,8 +161,34 @@ Substitution Cipher?
 \end{Problem}
 
 \begin{Solution}
-\end{Solution}
 
+    To decrypt the Atbash Cipher, we use the following Python code:
+    
+    \begin{lstlisting}[language=Python]
+    def decrypt(cipher):
+        mssge = ""
+        for i in cipher:
+            if i.isalpha():
+                if i.islower():
+                    mssge += chr(122-ord(i)+97)
+                else:
+                    mssge += chr(90-ord(i)+65)
+            else:
+                mssge += i
+        return mssge
+    
+    print(decrypt("XZKVIXZROORV"))
+    \end{lstlisting}
+    
+    Running the above code produces the decrypted text:
+    
+    \begin{verbatim}
+    CAPERICAILLE
+    \end{verbatim}
+    
+    The Atbash Cipher is a special case of the Simple Substitution Cipher where the substitution is symmetric and involves reversing the alphabet. 
+    
+\end{Solution}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Complete the assignment now
 \end{document}

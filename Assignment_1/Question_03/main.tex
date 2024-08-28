@@ -166,6 +166,43 @@ without manually reading it?
 \end{Problem}
 
 \begin{Solution}
+
+(a) \textbf{Decryption:} I THINK THAT I SHALL NEVER SEE A BILLBOARD LOVELY AS A TREE
+
+(b) \textbf{Decryption:} LOVE IS NOT LOVE WHICH ALTERS WHEN IT ALTERATION FINDS
+
+(c) \textbf{Decryption:} IN BAITING A MOUSE TRAP WITH CHEESE ALWAYS LEAVE ROOM FOR THE MOUSE
+
+\textbf{Python Code for Automation:}
+
+\begin{lstlisting}[language=Python]
+def shift_cipher(cipher):
+    l = []
+
+    for i in range(26):
+        s = ""
+        for j in cipher:
+            if j == " ":
+                s += " "
+            elif j.islower():
+                s += chr((ord(j) - ord('a') + i) % 26 + ord('a'))
+            elif j.isupper():
+                s += chr((ord(j) - ord('A') + i) % 26 + ord('A'))
+            else:
+                s += j  # Keeps non-alphabetic characters unchanged
+        l.append(s)
+
+    return l
+
+def main():
+    cipher = input("Enter the cipher text: ")
+    l = shift_cipher(cipher)
+    for i, shifted in enumerate(l):
+        print(f"Shift {i}: {shifted}")
+
+main()
+\end{lstlisting}
+
 \end{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
