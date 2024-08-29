@@ -1,3 +1,5 @@
+To see output, copy each line and paste in sage terminal and hit enter.
+
 # Hill Cipher
 S = AlphabeticStrings()
 E = HillCryptosystem(S, 3)
