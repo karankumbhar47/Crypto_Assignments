@@ -31,6 +31,27 @@
     urlcolor=blue,
 }
 \usepackage{xcolor,colortbl}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{ 
+    language=bash,
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{lightgray},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    frame=single,
+    rulecolor=\color{black},
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={\%*}{*)}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Environment setup
@@ -51,7 +72,7 @@ frametitlebackgroundcolor=gray!20,
 innertopmargin=\topskip,
 }
 \mdtheorem[style=theoremstyle]{Problem}{Question Number}
-\setcounter{Problem}{0}
+\setcounter{Problem}{6}
 \newenvironment{Solution}{\textbf{Solution.}}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -70,7 +91,7 @@ innertopmargin=\topskip,
     breaklines=true,                 
     captionpos=b,                    
     keepspaces=true,                 
-    numbers=left,                    
+    numbers=false,                    
     numbersep=5pt,                  
     showspaces=false,                
     showstringspaces=false,
@@ -92,7 +113,7 @@ innertopmargin=\topskip,
 \pagestyle{fancy}
 \headheight 35pt
 \lhead{\today \hspace*{4cm} Key-Breakers}
-\rhead{\includegraphics[width=1.2cm]{logo.png}}
+\rhead{\includegraphics[width=1.2cm]{../logo.png}}
 \lfoot{}
 \pagenumbering{arabic}
 \cfoot{\small\thepage}
@@ -153,23 +174,143 @@ innertopmargin=\topskip,
 %New problem
 \newpage
 \begin{Problem}
-Recall the Vigenre Cipher discussed in class.
-\begin{itemize}
-    \item  Encrypt MY HOME IS INDIA using a Vigenre Cipher with keyword KEA.
-    \item The ciphertext JNHYSMCDJOP was obtained by encrypting an English word using a
-Vigenre Cipher:
+    Recall the Vigenre Cipher discussed in class.
     \begin{itemize}
-        \item The first and ninth letters of the plaintext are identical. What does this tell you
-            about the key?
+        \item  Encrypt MY HOME IS INDIA using a Vigenre Cipher with keyword KEA.
+        \item The ciphertext JNHYSMCDJOP was obtained by encrypting an English word using a
+              Vigenre Cipher:
+              \begin{itemize}
+                  \item The first and ninth letters of the plaintext are identical. What does this tell you
+                        about the key?
+                  \item Given the keyword length is less than 7, the third and fourth letters of the plaintext
+                        are F and O, respectively, and A is a letter in the keyword, find the keyword and the
+                        plaintext.
+              \end{itemize}
+        \item
+              If the keyword of a Vigenre Cipher has repeated letters, does this make it any easier to
+              break?
     \end{itemize}
-\end{itemize}
 \end{Problem}
 
 \begin{Solution}
+    \subsection*{Part1}
+    \textbf{Vigenre Cipher Table}
+    \begin{table}[h!]
+        \centering
+        \renewcommand{\arraystretch}{1.5} % Adjust the row height
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            \textbf{Plain Text}  & M    & Y    & H   & O    & M    & E   & I    & S    & I   & N    & D   & I   & A    \\
+            \textbf{}            & (12) & (24) & (7) & (14) & (12) & (4) & (8)  & (18) & (8) & (13) & (3) & (8) & (0)  \\
+            \hline
+            \textbf{Key}         & K    & E    & A   & K    & E    & A   & K    & E    & A   & K    & E   & A   & K    \\
+            \textbf{}            & (10) & (4)  & (0) & (10) & (4)  & (0) & (10) & (4)  & (0) & (10) & (4) & (0) & (10) \\
+            \hline
+            \textbf{Cipher Text} & W    & C    & H   & Y    & Q    & E   & S    & W    & I   & X    & H   & I   & K    \\
+            \textbf{}            & (22) & (2)  & (7) & (24) & (16) & (4) & (18) & (22) & (8) & (23) & (7) & (8) & (10) \\
+            \hline
+        \end{tabular}
+        \caption{Vigenre Cipher}
+        \label{tab:vigenre}
+    \end{table}
+
+    \pagebreak
+    \subsection*{Part2.1}
+    Given the ciphertext \texttt{JNHYSMCDJOP} obtained by encrypting an English word using a Vigenre cipher, \\
+    and knowing that the first and ninth letters of the plaintext are identical, we can infer the following \\
+    about the key: \\
+
+    \textbf{Key Points}
+    \begin{enumerate}
+        \item \textbf{Plaintext Repetition:} \\
+              The first and ninth letters of the plaintext are the same,  \( P_1 = P_9 \).
+
+        \item \textbf{Ciphertext Repetition:} \\
+              The ciphertext letters corresponding to these positions are also identical,  \( C_1 = C_9 \).
+
+              Since \( P_1 = P_9 \) and \( C_1 = C_9 \), it follows that:
+              \[
+                  (P_1 + K_1) \mod 26 = (P_9 + K_9) \mod 26
+              \]
+              Given \( P_1 = P_9 \), it simplifies to:
+              \[
+                  K_1 \equiv K_9 \pmod{26}
+              \]
+
+        \item The equality \( K_1 = K_9 \) indicates that the key must repeat every 8
+              characters or a divisor of 8 (1, 2, 4, 8) because the positions 1 and 9 are 8 characters apart.
+
+        \item If the key length is shorter than 8 characters, it must be a repeating key whose
+              length divides 8. Thus, the key could be of lengths 1, 2, 4, or 8.
+
+        \item So we can conclued from observation that \( P_1 = P_9 \) and \( C_1 = C_9 \) provides a constraint
+              on the key's periodicity. The key must repeat at intervals that align with the distance between these
+              positions in the plaintext, giving us valuable insight into possible key lengths and their periodic patterns.
+    \end{enumerate}
+
+    \subsection*{Part2.2}
+    Given
+
+    \begin{itemize}
+        \item We Know key length is less than 7
+        \item Also given thrid and fourth letters of plain text as 'F' and 'O'.
+        \item Key contain letter 'A'
+    \end{itemize}
+    From above part we know that if key length is less than 8 then possible length
+    of key is 1,2 and 4. So we can try all key of length 1,2 and 4 which contain
+    letter 'A'.\\
+
+    \textbf{Calculating the key for the 3rd and 4th positions}\\
+    \begin{enumerate}
+        \item For the 3rd position:
+              \begin{itemize}
+                  \item \(C_3 = H\) (ciphertext) and \(P_3 = F\) (plaintext)
+              \end{itemize}
+
+              Calculate the key:
+              \[
+                  K_3 = (C_3 - P_3) \mod 26 = (H - F) \mod 26 = (7 - 5) \mod 26 = 2
+              \]
+              So, \(K_3\) corresponds to the letter \textbf{C}.
+        \item For the 4th position:
+              \begin{itemize}
+                  \item \(C_4 = Y\) (ciphertext) and \(P_4 = O\) (plaintext)
+              \end{itemize}
+              Calculate the key:
+              \[ K_4 = (C_4 - P_4) \mod 26 = (Y - O) \mod 26 = (24 - 14) \mod 26 = 10 \]
+              So, \(K_4\) corresponds to the letter \textbf{K}.
+    \end{enumerate}
+
+    From above result we can conclude that our key Contains letter A, C and K. Also we can
+    discard the posibility of key length 1,2. So our key lenght is 4. Our key is in the following
+    format
+    \begin{enumerate}[label=\roman*]
+        \item *ACK
+        \item A*CK
+    \end{enumerate}
+
+    We can try all possible keys to decrypt the given cipher text to
+    plain text and find valid english word.
+    To achieve this we use python code(\texttt{vigenre.py}) to iteratively eliminate invalid keys
+    and find the correct one.\\
+
+    \textbf{Note} Before executing \texttt{vigenre.py} file make sure you have installed all requried libraries listed in \\
+    \texttt{requirements.txt} using following command.
+
+    \begin{lstlisting}[]
+        pip install -r requirements.txt
+    \end{lstlisting}
+
+    After Executing Code We will get Plaintext and Key as follows
+    \begin{itemize}
+        \item Plaintext  -> \textbf{INFORMATION} 
+        \item Key  -> \textbf{BACK} 
+    \end{itemize}
+
+
 \end{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Complete the assignment now
 \end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
