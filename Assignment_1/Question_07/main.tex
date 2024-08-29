@@ -303,11 +303,16 @@ innertopmargin=\topskip,
 
     After Executing Code We will get Plaintext and Key as follows
     \begin{itemize}
-        \item Plaintext  -> \textbf{INFORMATION} 
-        \item Key  -> \textbf{BACK} 
+        \item Plaintext  -> \textbf{INFORMATION}
+        \item Key  -> \textbf{BACK}
     \end{itemize}
 
+    \pagebreak
 
+    \subsection*{Part3}
+    Yes, the presence of repeated letters in a Vigenère Cipher's keyword can indeed make it more susceptible to decryption. When a keyword contains repetitions, it introduces periodic patterns in the ciphertext. These patterns can be detected and analyzed using frequency analysis techniques. For example, if the keyword is repeating, the cipher effectively transforms into a series of Caesar ciphers, each with a shift determined by the corresponding letter of the keyword.
+
+    By identifying the repeating nature of the key, one can use methods such as the Kasiski examination to determine the length of the keyword. Once the length is known, the ciphertext can be segmented into multiple Caesar ciphers, each corresponding to a single position in the keyword. Analyzing the frequency of letters in these segments can then help in deducing the individual letters of the repeating key, leading to the eventual decryption of the plaintext.
 \end{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
