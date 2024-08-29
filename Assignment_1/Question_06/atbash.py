@@ -9,5 +9,6 @@ def decrypt(cipher):
             else:
                 mssge += i
         return mssge
-    
-print(decrypt("XZKVIXZROORV"))
+
+if __name__ == '__main__':
+    print(decrypt("XZKVIXZROORV"))

@@ -29,5 +29,5 @@ def decrypt(cipher, a, b):
     return mssge
 
 cipher = encrypt("cryptography", 3, 5)
-print(cipher)
-print(decrypt("XRHLAFUUK", 3, 5))
+print("ciphertext of encrypted 'cryptography' : ", cipher)
+print("decryption of 'XRHLAFUUK' : ", decrypt("XRHLAFUUK", 3, 5))

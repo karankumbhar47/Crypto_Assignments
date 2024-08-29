@@ -21,10 +21,10 @@ Before running the script, you need to have the ciphertext that you want to decr
 ### Run the Script:
 
 - **Command Line**:
-  - Navigate to the directory where your `cryptanalysis.sage` file is located.
+  - Navigate to the directory where your `Q8.sage` file is located.
   - Run the script by typing:
     ```bash
-    sage cryptanalysis.sage
+    sage Q8.sage
     ```
 
 - **SageMath Notebook**:
