@@ -51,7 +51,7 @@ frametitlebackgroundcolor=gray!20,
 innertopmargin=\topskip,
 }
 \mdtheorem[style=theoremstyle]{Problem}{Question Number}
-\setcounter{Problem}{0}
+\setcounter{Problem}{9}
 \newenvironment{Solution}{\textbf{Solution.}}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -92,7 +92,7 @@ innertopmargin=\topskip,
 \pagestyle{fancy}
 \headheight 35pt
 \lhead{\today \hspace*{4cm} Key-Breakers}
-\rhead{\includegraphics[width=1.2cm]{logo.png}}
+\rhead{\includegraphics[width=1.2cm]{../logo.png}}
 \lfoot{}
 \pagenumbering{arabic}
 \cfoot{\small\thepage}
@@ -155,7 +155,7 @@ innertopmargin=\topskip,
 \begin{Problem}
     Find the flaw in the following argument:
 Consider the following attack against one-time pad: upon seeing a ciphertext c, the eavesdropper
-    tries every candidate key k \epsilon {0, 1}^n until she has found the one that was used, at which point
+    tries every candidate key $k \epsilon \left\{0,1\right\}^{n}$ until she has found the one that was used, at which point
 she outputs the plaintext m. This contradicts the argument that the eavesdropper can obtain
 no information about m by seeing the ciphertext.
 \end{Problem}
