@@ -1,0 +1,86 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            6f:47:45:2d:f1:b8:d1:3c:cf:10:18:20:db:1f:42:97:cc:cd:19:8c
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: DC=durg, DC=bhilai, DC=iit, O=IIT Bhilai Durg, CN=Ratnesh Signing CA
+        Validity
+            Not Before: Aug 30 12:04:44 2024 GMT
+            Not After : Dec 28 12:04:44 2024 GMT
+        Subject: DC=in, DC=iitb, DC=bhilai, O=IIT Bhilai, CN=group-8
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:a5:70:8e:98:87:17:4a:a5:b3:77:7d:69:a4:8e:
+                    fc:fc:cb:59:77:80:9b:4a:29:18:6b:5a:c3:4d:f7:
+                    0f:53:66:08:09:b9:70:5f:36:47:1e:57:73:a8:ce:
+                    1b:8a:41:b1:97:76:b7:29:2a:db:9b:a4:2c:a1:ee:
+                    ce:16:43:0c:3d:5f:f3:66:9f:3b:b9:e0:f9:17:7d:
+                    7c:8d:7b:a0:52:1e:05:96:69:7f:9f:d2:46:8e:35:
+                    b7:ec:b8:dc:5e:bb:25:14:1b:5f:a4:9b:a6:ae:5b:
+                    01:22:10:79:3d:16:2e:bf:c2:92:ac:3e:31:e2:f1:
+                    8d:d0:77:e6:0c:60:1f:90:eb:4c:c1:96:a3:63:ac:
+                    3d:4c:25:9c:83:8f:e6:04:16:03:32:38:40:76:f3:
+                    b7:85:a7:69:55:28:1b:ba:dd:d1:58:06:78:40:2c:
+                    c5:d8:19:65:de:d7:79:05:da:86:61:51:85:07:4f:
+                    78:10:14:02:f0:f1:78:90:cb:fd:c2:7d:82:be:65:
+                    ec:db:7d:0e:36:2a:6b:02:d2:9c:3c:65:fc:e1:bd:
+                    8d:83:98:f8:64:ea:1b:7e:98:01:99:bf:2e:7d:c7:
+                    5a:32:f1:c0:77:44:8f:e2:17:7b:02:2c:8e:35:73:
+                    90:e9:bf:8e:75:6b:7e:62:51:a8:14:48:e1:05:de:
+                    af:33
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication, E-mail Protection
+            X509v3 Subject Key Identifier: 
+                E7:0D:0A:4F:CA:30:4A:7F:79:10:5F:91:DA:F8:C0:BF:EE:C0:D1:7D
+            X509v3 Authority Key Identifier: 
+                DD:D2:D2:34:69:18:B0:83:FA:85:45:4C:8A:E6:F9:A0:08:D6:D7:46
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        93:7b:e2:dd:28:f4:44:69:2e:a2:cb:6a:03:c5:7c:fc:fc:f9:
+        1d:11:0e:22:67:92:a6:59:b9:be:65:e7:fd:ba:ac:9d:71:14:
+        05:aa:48:2e:06:15:3b:bd:61:df:76:10:49:17:ca:37:a0:79:
+        21:85:a3:24:76:80:a2:5d:b3:7c:d1:db:3f:6c:a2:ae:28:c4:
+        bb:76:44:32:79:7c:b8:fe:99:8e:9f:a4:60:f9:c6:04:23:97:
+        77:4c:87:3b:a2:96:ec:ac:f8:7b:3c:5c:35:c3:4c:c9:d0:04:
+        87:16:bc:9d:7f:fd:2c:25:b0:73:30:f0:52:07:d0:70:52:55:
+        8a:70:e3:d6:45:a1:ee:b2:22:09:42:96:89:7d:8f:5f:14:f4:
+        e3:8f:5e:c5:0c:09:b4:56:38:30:6e:d6:33:21:18:08:30:d9:
+        42:5e:28:8e:5a:90:db:f2:d0:a7:bc:b1:28:a6:94:5a:8d:62:
+        1c:e6:76:6b:e3:ac:29:ac:3c:26:ab:1e:d3:31:c1:0a:79:c0:
+        2c:f1:d1:d4:6d:5e:59:af:7d:1e:75:c0:76:d6:7d:51:55:1a:
+        40:21:bf:d3:30:a7:b8:00:ae:bc:cf:32:fc:e6:76:f7:31:c7:
+        d2:e9:a5:21:83:9f:b7:25:62:15:a0:ab:bc:11:97:3b:bf:35:
+        b5:29:d0:d9
+-----BEGIN CERTIFICATE-----
+MIID7TCCAtWgAwIBAgIUb0dFLfG40TzPEBgg2x9Cl8zNGYwwDQYJKoZIhvcNAQEL
+BQAwejEUMBIGCgmSJomT8ixkARkWBGR1cmcxFjAUBgoJkiaJk/IsZAEZFgZiaGls
+YWkxEzARBgoJkiaJk/IsZAEZFgNpaXQxGDAWBgNVBAoMD0lJVCBCaGlsYWkgRHVy
+ZzEbMBkGA1UEAwwSUmF0bmVzaCBTaWduaW5nIENBMB4XDTI0MDgzMDEyMDQ0NFoX
+DTI0MTIyODEyMDQ0NFowaTESMBAGCgmSJomT8ixkARkWAmluMRQwEgYKCZImiZPy
+LGQBGRYEaWl0YjEWMBQGCgmSJomT8ixkARkWBmJoaWxhaTETMBEGA1UECgwKSUlU
+IEJoaWxhaTEQMA4GA1UEAwwHZ3JvdXAtODCCASIwDQYJKoZIhvcNAQEBBQADggEP
+ADCCAQoCggEBAKVwjpiHF0qls3d9aaSO/PzLWXeAm0opGGtaw033D1NmCAm5cF82
+Rx5Xc6jOG4pBsZd2tykq25ukLKHuzhZDDD1f82afO7ng+Rd9fI17oFIeBZZpf5/S
+Ro41t+y43F67JRQbX6Sbpq5bASIQeT0WLr/Ckqw+MeLxjdB35gxgH5DrTMGWo2Os
+PUwlnIOP5gQWAzI4QHbzt4WnaVUoG7rd0VgGeEAsxdgZZd7XeQXahmFRhQdPeBAU
+AvDxeJDL/cJ9gr5l7Nt9DjYqawLSnDxl/OG9jYOY+GTqG36YAZm/Ln3HWjLxwHdE
+j+IXewIsjjVzkOm/jnVrfmJRqBRI4QXerzMCAwEAAaN8MHowDgYDVR0PAQH/BAQD
+AgWgMAkGA1UdEwQCMAAwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMB0G
+A1UdDgQWBBTnDQpPyjBKf3kQX5Ha+MC/7sDRfTAfBgNVHSMEGDAWgBTd0tI0aRiw
+g/qFRUyK5vmgCNbXRjANBgkqhkiG9w0BAQsFAAOCAQEAk3vi3Sj0RGkuostqA8V8
+/Pz5HREOImeSplm5vmXn/bqsnXEUBapILgYVO71h33YQSRfKN6B5IYWjJHaAol2z
+fNHbP2yirijEu3ZEMnl8uP6Zjp+kYPnGBCOXd0yHO6KW7Kz4ezxcNcNMydAEhxa8
+nX/9LCWwczDwUgfQcFJVinDj1kWh7rIiCUKWiX2PXxT0449exQwJtFY4MG7WMyEY
+CDDZQl4ojlqQ2/LQp7yxKKaUWo1iHOZ2a+OsKaw8Jqse0zHBCnnALPHR1G1eWa99
+HnXAdtZ9UVUaQCG/0zCnuACuvM8y/OZ29zHH0umlIYOftyViFaCrvBGXO781tSnQ
+2Q==
+-----END CERTIFICATE-----
