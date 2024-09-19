@@ -171,6 +171,48 @@ innertopmargin=\topskip,
 
 \begin{Solution}
 
+\begin{lstlisting}
+    
+You are the manager of a small bakery for a day. The bakery produces cakes and muffins, both of which consume some amount of ingredients and labor.
+
+    Total ingredients available for the day: 150 units
+    Total labor available for the day: 120 hours
+
+Logistics for producing a cake:
+
+    Requires 8 units of ingredients and 5 hours of labor
+    Sells for a profit of ₹500 per cake
+
+Logistics for producing a muffin:
+
+    Requires 4 units of ingredients and 3 hours of labor
+    Sells for a profit of ₹200 per muffin
+
+Your task is to determine how many cakes and muffins to produce to maximize profit.
+\end{lstlisting}
+
+\textbf{Gurobi Code and solution}
+
+    \begin{lstlisting}
+        Maximize
+        500 x + 200 y
+        Subject To
+        R0: 8 x + 4 y <= 150
+        R1: 5 x + 3 y <= 120
+        Bounds
+        0 <= x
+        0 <= y
+        Generals
+        x y
+        End
+
+    # Objective value = 9200
+    # x 18
+    # y 1
+
+    
+    \end{lstlisting}
+
 \end{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

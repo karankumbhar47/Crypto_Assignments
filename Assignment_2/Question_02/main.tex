@@ -92,7 +92,7 @@ innertopmargin=\topskip,
 \pagestyle{fancy}
 \headheight 35pt
 \lhead{\today \hspace*{4cm} Key-Breakers}
-\rhead{\includegraphics[width=1.2cm]{../logo.png}}
+\rhead{\includegraphics[width=1.2cm]{./logo.png}}
 \lfoot{}
 \pagenumbering{arabic}
 \cfoot{\small\thepage}
@@ -168,6 +168,63 @@ Search for five Fiestal & five SPN block ciphers with following details
 \end{Problem}
 
 \begin{Solution}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\begin{center}
+\textbf{Block Ciphers}
+\end{center}
+
+\noindent Below are two tables that provide details about five Feistel and five SPN block ciphers, including their block length, supported key sizes, and additional information.
+
+\bigskip
+
+\begin{center}
+\textbf{Fiestal Block Ciphers}
+\end{center}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Name} & \textbf{Block-length} & \textbf{Supported Key-sizes} & \textbf{Additional Info} \\
+\hline
+DES        & 64 bits  & 56 bits              & 16-round Feistel structure                       \\
+Blowfish   & 64 bits  & 32 to 448 bits       & Key-dependent S-boxes                            \\
+Camellia   & 128 bits & 128, 192, 256 bits   & Used in both software and hardware implementations \\
+CAST-128   & 64 bits  & 40 to 128 bits       & Uses eight S-boxes; 12 or 16 rounds depending on key size \\
+TEA        & 64 bits  & 128 bits             & Simple structure, susceptible to certain attacks  \\
+\hline
+\end{tabular}
+\end{table}
+
+\bigskip
+
+\begin{center}
+\textbf{SPN Block Ciphers}
+\end{center}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Name} & \textbf{Block-length} & \textbf{Supported Key-sizes} & \textbf{Additional Info} \\
+\hline
+AES         & 128 bits & 128, 192, 256 bits   & Widely used; operates in 10, 12, or 14 rounds \\
+Rijndael    & 128, 192, 256 bits & 128, 192, 256 bits & AES finalist; supports variable block sizes  \\
+ANUBIS      & 128 bits & 128 to 320 bits      & Designed by Vincent Rijmen, co-designer of AES \\
+PRESENT     & 64 bits  & 80 or 128 bits       & Lightweight blockcipher for constrained environments \\
+Noekeon     & 128 bits & 128 bits             & Simple structure, efficient in both hardware and software \\
+\hline
+\end{tabular}
+\end{table}
+
+\end{document}
+
+
+
 
 \end{Solution}
 
