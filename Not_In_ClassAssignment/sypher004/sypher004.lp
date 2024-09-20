@@ -118,6 +118,7 @@ Subject To
  R111: 4 x33 + 4 x37 + 4 x3b + 4 x3f - x4c - x4d - x4e - x4f >= 0
  R112: a00 + a01 + a02 + a03 + a10 + a11 + a12 + a13 + a20 + a21 + a22
    + a23 + a30 + a31 + a32 + a33 >= 1
+ R113: a30 + a31 + a32 + a33 = 2
 Bounds
 Binaries
  x00 x01 x02 x03 x04 x05 x06 x07 x08 x09 x0a x0b x0c x0d x0e x0f x10 x11

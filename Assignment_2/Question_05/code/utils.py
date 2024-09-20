@@ -3,6 +3,7 @@
 import subprocess
 from tabulate import tabulate
 
+
 def generate_message_pairs():
     message_pairs = []
 
@@ -20,7 +21,7 @@ def generate_message_pairs():
     return message_pairs
 
 
-def generate_random_keys():
+def generate_random_keys() -> list[int]:
     keys = []
     for _ in range(6):
         result = subprocess.run(['openssl', 'rand', '2'], capture_output=True)
@@ -28,13 +29,20 @@ def generate_random_keys():
         keys.append(int(key, 16))
     return keys
 
+
 def printResult(data: list[tuple]) -> None:
     table_data = []
     sum = 0
     for keys, count, prob in data:
-        sum+= count
+        sum += count
         table_data.append([", ".join(map(str, keys)), count, prob])
+
     sum = sum/len(data)
-    table_data.append(["Average",sum, sum/(2**16)]) 
+    table_data.append(["Average", sum, sum/(2**16)])
     print(tabulate(table_data, headers=["Keys", "Count", "Probability"],
           tablefmt="grid", stralign="center", numalign="center", showindex=True))
+
+
+def printLabel(label: str) -> None:
+    print(f'\n {"="*74}\n')
+    print(f'\n{" "*28} {label} \n')
