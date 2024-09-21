@@ -1,3 +1,5 @@
+# perfrom_all_experiments.py
+
 from experiment_6_7 import experiment as exp1
 from experiment_6_8 import experiment as exp2
 from experiment_6_9 import experiment as exp3

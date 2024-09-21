@@ -42,7 +42,6 @@ def generate_message_pairs(diff_0=0, diff_1=0, diff_2=0, diff_3=0):
             M1_prime << 8) | (M2_prime << 4) | M3_prime
 
         message_pairs.append((message, message_prime))
-
     return message_pairs
 
 
@@ -54,6 +53,9 @@ def generate_random_keys() -> list[int]:
         keys.append(int(key, 16))
     return keys
 
+
+
+# Utilit functions to analyze the diff 
 def get_all_candidates(currdiff, ddt):
     candidates = []
     diffParts = [(currdiff >> (4 * j)) & 15 for j in range(4)]  
@@ -68,7 +70,8 @@ def get_all_candidates(currdiff, ddt):
     return candidates               
 
 
-def recurr(round: int,curr_path:list[int], all_path:list[list[int]],ddt):
+# Utilit functions to analyze the diff 
+def getAllPath(round: int,curr_path:list[int], all_path:list[list[int]],ddt):
     if(round==4):
         parts = [(curr_path[-1]>> (4 * j)) & 15 for j in range(4)]  # Extract 4 parts
         zero_count = sum(1 for part in parts if part == 0)
@@ -86,18 +89,18 @@ def recurr(round: int,curr_path:list[int], all_path:list[list[int]],ddt):
             continue
         curr_path.append(permutaedDiff)
 
-        # print(curr_path,round)
-        recurr(round+1,curr_path,all_path,ddt)
+        getAllPath(round+1,curr_path,all_path,ddt)
         curr_path.pop()
     return
         
-    
+
+# Utility function to get all diff path given starting diff  
 def generateDiffPath(input_diff : int):
     S_Box = [6, 4, 12, 5, 0, 7, 2, 14, 1, 15, 3, 13, 8, 10, 9, 11]
     ddt = generate_ddt(S_Box)
     allPath = []
     currPath = [input_diff]
-    recurr(0,currPath, allPath, ddt) 
+    getAllPath(0,currPath, allPath, ddt) 
 
     unique_paths = set(tuple(path) for path in allPath)
     unique_paths_list = [list(path) for path in unique_paths]
@@ -109,9 +112,3 @@ def generateDiffPath(input_diff : int):
                 if(i!="0"): active+=1
             print(hexNum,end=" ")
         print(active)
-            
-
-for i in range(16):
-    print(i)
-    generateDiffPath(i)
-

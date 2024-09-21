@@ -5,6 +5,12 @@ from tabulate import tabulate
 
 
 def generate_message_pairs():
+    """
+    generate 2^16 message pair with difference (0,0,2,0)
+
+    @return: A list of tuples containing pairs of messages.
+             Each tuple consists of (message, message_prime).
+    """
     message_pairs = []
 
     for m in range(2**16):
@@ -22,6 +28,11 @@ def generate_message_pairs():
 
 
 def generate_random_keys() -> list[int]:
+    """
+    Generates a list of random keys using OpenSSL.
+
+    @return: A list of integers representing the generated keys.
+    """
     keys = []
     for _ in range(6):
         result = subprocess.run(['openssl', 'rand', '2'], capture_output=True)

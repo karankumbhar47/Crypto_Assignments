@@ -1,13 +1,30 @@
+# experiment_6_8.py
+
 from sypher004 import Sypher004
 from utils import generate_message_pairs, generate_random_keys
 
 
 def isOutDiff_2(output1, output2):
+    """
+    Checks if the XOR difference between two outputs is 32.
+
+    @param output1: First output value.
+    @param output2: Second output value.
+    @return: True if XOR difference is 32, False otherwise.
+    """
     diff = output1 ^ output2
     return diff == 32
 
 
 def experiment():
+    """
+    Runs a differential cryptanalysis experiment 6.8 using Sypher004.
+
+    @return: A list of tuples with:
+             - key_list: The random keys used.
+             - count: Number of pairs with the desired output difference.
+             - probability: Probability of such pairs occurring.
+    """
     message_pairs = generate_message_pairs()
     results = []
 
