@@ -7,9 +7,8 @@ inversesbox = [sbox.index(i) for i in range(16)]
 
 ddt = generate_ddt(sbox)
 
-
 def match_bits(target: int, number: int) -> bool:
-    extracted_bits = (number >> 4) & 0xff
+    extracted_bits = (number) & 0xff
     return extracted_bits == target
 
 
@@ -32,35 +31,33 @@ def reversedoutput(ciphertext, key):
     return sbox_output
 
 
-def differential_attack(plaintext_pairs, round_keys, expected_difference):
+def differential_attack(plaintext_pairs,cipherText_pairs, round_keys, expected_difference):
     guessed_keys = {}
     max_count = 0
     for k5_guess in range(256):
         matches = 0
-        for pt1, pt2 in plaintext_pairs:
-            ct1 = Sypher004(pt1, round_keys)[-1]
-            ct2 = Sypher004(pt2, round_keys)[-1]
+        for i,(pt1, pt2) in enumerate(plaintext_pairs):
+            ct1,ct2 = cipherText_pairs[i]
 
-            r4_output1 = reversedoutput(ct1, k5_guess << 4)
-            r4_output2 = reversedoutput(ct2, k5_guess << 4)
+            r4_output1 = reversedoutput(ct1, k5_guess)
+            r4_output2 = reversedoutput(ct2, k5_guess)
 
             if isdiffmatches(r4_output1, r4_output2, expected_difference):
                 matches += 1
         guessed_keys[k5_guess] = matches
-        print(k5_guess, guessed_keys[k5_guess])
+        print(f"count for guess {k5_guess} ==>  {guessed_keys[k5_guess]}")
 
         # update max_count
         if matches > max_count:
             max_count = matches
 
     # collect all keys with the maximum count
-    best_keys = [key for key, count in guessed_keys.items()
-                 if count == max_count]
+    best_keys = [key for key, count in guessed_keys.items() if count == max_count]
 
-    # verify each best key guess
     print("max count keys")
     print(best_keys)
 
+    # verify each best key guess
     correct_keys = []
     for best_key in best_keys:
         if match_bits(best_key,round_keys[-1]):
@@ -69,18 +66,26 @@ def differential_attack(plaintext_pairs, round_keys, expected_difference):
     # return max(guessed_keys, key=guessed_keys.get)
     return best_keys, correct_keys
 
+def main():
+    din1,din2,din3,din4 = 0,0,2,2
+    dout1,dout2,dout3,dout4 = 0,0,2,2
+    round_keys = generate_random_keys()
+    expected_difference = tuple_to_16bit((dout1,dout2,dout3,dout4))
 
-plaintext_pairs = generate_message_pairs(0, 2, 2, 0)
-round_keys = generate_random_keys()
-expected_difference = 0x220
+    plaintext_pairs = generate_message_pairs(din1, din2, din3, din4)
+    plaintext_pairs,cipherText_pairs = filter_message(plaintext_pairs,round_keys)
+    print("Filter message size ",len(plaintext_pairs))
 
-best_key_guess, correct_keys = differential_attack(
-    plaintext_pairs, round_keys, expected_difference)
 
-print(round_keys)
-print(f"best key guess for k5: {best_key_guess}")
+    best_key_guess, correct_keys = differential_attack(
+        plaintext_pairs,cipherText_pairs,round_keys, expected_difference)
 
-if correct_keys:
-    print("correct key guesses:", correct_keys)
-else:
-    print("no correct key guesses")
+    print("Keys Used : ",round_keys)
+    print(f"best key guess for k5: {best_key_guess}")
+
+    if correct_keys:
+        print("correct key guesses:", correct_keys)
+    else:
+        print("no correct key guesses")
+
+main()

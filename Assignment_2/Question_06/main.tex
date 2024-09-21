@@ -152,58 +152,60 @@ innertopmargin=\topskip,
 %New problem
 \newpage
 \begin{Problem}
-Describe a differential attack, analogous to the one described in class for Sypher004, that will
-find eight subkey bits in the last round. What is the probability of the differential characteristic
-you devised.
+    Describe a differential attack, analogous to the one described in class for Sypher004, that will
+    find eight subkey bits in the last round. What is the probability of the differential characteristic
+    you devised.
 
-[Hint]: Your differential characteristic must involve two Sbox-es in the 4th round.
+        [Hint]: Your differential characteristic must involve two Sbox-es in the 4th round.
 \end{Problem}
 
-\begin{Solution}    
-\textbf{8-bit Attack}
+\begin{Solution}
+    \textbf{8-bit Attack}
     \begin{enumerate}
         \item First We need to decide the path which suppose to be followed by
-        the Sypher004, up to round 4 output.
-            In our case we are taking path as follows
-            \begin{center}
-            $(0,2,2,0) --> (0,2,2,0) --> (0,2,2,0) --> (0,2,2,0) --> (0,2,2,0)$
-            \end{center}
-        total cost of this path is $2 \times (\frac{6}{14})^4$ (probability that our key
-        guess is correct)
+              the Sypher004, up to round 4 output.
+              In our case we are taking path as follows
+              \begin{center}
+                  $(0, 0, 2, 2) --> (0, 0, 0, 3) --> (0, 0, 1, 1) --> (0, 0, 3, 0) --> (0, 0, 2, 2)$
+              \end{center}
+              total cost of this path is $(\frac{6}{14})^6 = 0.0027$ (probability that our key
+              guess is correct)
 
-        \textbf{Note}: We are analyzing all difference path to get most optimum path 
-        for our attack. For analyzing we are using following function form \texttt{utils.py}
-            \begin{itemize}
-                \item \texttt{generateDiffPath}
-                \item \texttt{getAllPath}
-                \item \texttt{get\_all\_candidates}
-            \end{itemize}
+              \textbf{Note}: We are analyzing all difference path to get most optimum path
+              for our attack. For analyzing we are using following function form \texttt{analyze.py}
+              \begin{itemize}
+                  \item \texttt{find\_all\_paths}
+                  \item \texttt{dfs}
+              \end{itemize}
         \item As we know the initial message pair difference and difference at the end
-        of four round which is $(0,2,2,0)$. 
-        So we have to create $2^{16}$ message pair to iterate over to get correct key.
-        
-        This is done by the \texttt{generate\_message\_pairs} function from \texttt{utils.py}
+              of four round which is $(0,0,2,2)$.
+              So we have to create $2^{16}$ message pair to iterate over to get correct key.
+
+              This is done by the \texttt{generate\_message\_pairs} function from \texttt{utils.py}
+        \item Using \texttt{message\_filter} function from \texttt{utils.py} file. Which will reduce number of messages
+              around $7200$
+
         \item Then we have to iterate over all keys guess that is from \texttt{(0x0110,0x0ff0)} for k5
-        \item In each iteration We have to initialize one counter and then for each message pair among  
-        $2^{16}$ pairs 
-            \begin{itemize}
-                \item get ciphertext for each message form pair $(c_1,c_2)$
-                \item then reverse the last round to get output for fourth round $(out_1,out_2)$ 
-                \item Then check that output difference $(out_1 \oplus out_2)$ should be equal to \texttt{0x0220} 
-                \item if condition satisfy then increase counter 
-            \end{itemize}
-        \item When we get counter for each key guess then take one with the highest counter $(best keys)$ (maybe multiple candidates possible) 
+        \item In each iteration We have to initialize one counter and then for each message pair among
+              $2^{16}$ pairs
+              \begin{itemize}
+                  \item get ciphertext for each message form pair $(c_1,c_2)$
+                  \item then reverse the last round to get output for fourth round $(out_1,out_2)$
+                  \item Then check that output difference $(out_1 \oplus out_2)$ should be equal to \texttt{0x0220}
+                  \item if condition satisfy then increase counter
+              \end{itemize}
+        \item When we get counter for each key guess then take one with the highest counter $(best keys)$ (maybe multiple candidates possible)
         \item Cross-check the candidates are with actual key for correct key
         \item All This code is automated in \texttt{attack.py} file (it will take more than 15 min to get correct key)
         \item Faster version of automated code is in file \texttt{multi\_thread.py} using multithreading. (around $10-12$ min)
-        \end{enumerate}
+    \end{enumerate}
 
 
-        \pagebreak
-        \textbf{Output Image }
-        \begin{center}
-            \includegraphics[width=5.2cm]{./q1.png}
-        \end{center}
+    \pagebreak
+    \textbf{Output Image }
+    \begin{center}
+        \includegraphics[width=11.2cm]{./p1.png}
+    \end{center}
 
 \end{Solution}
 

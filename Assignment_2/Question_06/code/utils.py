@@ -1,7 +1,8 @@
 import numpy as np
+from sypher004 import Sypher004
 import subprocess
 
-P_Box = [0, 4, 8, 12, 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15]
+P_Box = [0, 4, 8, 12,    1, 5, 9, 13,      2, 6, 10, 14,      3, 7, 11, 15]
 
 def apply_permutation(input_bits : int) -> int:
     permuted_bits = 0
@@ -54,61 +55,24 @@ def generate_random_keys() -> list[int]:
     return keys
 
 
+def tuple_to_16bit(t: tuple) -> int:
+    return (t[0] << 12) | (t[1] << 8) | (t[2] << 4) | t[3]
 
-# Utilit functions to analyze the diff 
-def get_all_candidates(currdiff, ddt):
-    candidates = []
-    diffParts = [(currdiff >> (4 * j)) & 15 for j in range(4)]  
-
-    for j, diff in enumerate(diffParts):
-        for i in range(16):
-            if ddt[diff][i] >=6:  
-                mask = ~(15 << (4 * j))  
-                new_diff = currdiff & mask  
-                new_diff |= (i << (4 * j))  
-                candidates.append(new_diff)
-    return candidates               
+def bit16_to_tuple(n: int) -> tuple:
+    x = (n >> 12) & 0xF  
+    y = (n >> 8) & 0xF   
+    z = (n >> 4) & 0xF   
+    w = n & 0xF          
+    return (x, y, z, w)
 
 
-# Utilit functions to analyze the diff 
-def getAllPath(round: int,curr_path:list[int], all_path:list[list[int]],ddt):
-    if(round==4):
-        parts = [(curr_path[-1]>> (4 * j)) & 15 for j in range(4)]  # Extract 4 parts
-        zero_count = sum(1 for part in parts if part == 0)
-        if zero_count == 2:
-            all_path.append(curr_path.copy())
-        return 
-
-    all_diff = get_all_candidates(curr_path[-1],ddt);
-    for diff in all_diff:
-        permutaedDiff = apply_permutation(diff)
-
-        parts = [(permutaedDiff>> (4 * j)) & 15 for j in range(4)]  # Extract 4 parts
-        zero_count = sum(1 for part in parts if part == 0)
-        if zero_count < 2:
-            continue
-        curr_path.append(permutaedDiff)
-
-        getAllPath(round+1,curr_path,all_path,ddt)
-        curr_path.pop()
-    return
-        
-
-# Utility function to get all diff path given starting diff  
-def generateDiffPath(input_diff : int):
-    S_Box = [6, 4, 12, 5, 0, 7, 2, 14, 1, 15, 3, 13, 8, 10, 9, 11]
-    ddt = generate_ddt(S_Box)
-    allPath = []
-    currPath = [input_diff]
-    getAllPath(0,currPath, allPath, ddt) 
-
-    unique_paths = set(tuple(path) for path in allPath)
-    unique_paths_list = [list(path) for path in unique_paths]
-    for path in unique_paths_list:
-        active = 0
-        for diff in path:
-            hexNum = hex(diff)[2:].zfill(4)
-            for i in hexNum:
-                if(i!="0"): active+=1
-            print(hexNum,end=" ")
-        print(active)
+def filter_message(plainTextPair,keys):
+    outputPlainText = []
+    outputCipherText = []
+    for p1, p2 in plainTextPair:
+        c1 = Sypher004(p1,keys)[-1];
+        c2 = Sypher004(p2,keys)[-1];
+        if((c1^c2)>>8)==0:
+            outputPlainText.append((p1,p2))
+            outputCipherText.append((c1,c2))
+    return outputPlainText,outputCipherText
