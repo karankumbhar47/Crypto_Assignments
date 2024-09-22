@@ -1,3 +1,5 @@
+# analyze.py
+
 from utils import generate_ddt, apply_permutation, bit16_to_tuple, tuple_to_16bit
 
 S_Box = [6, 4, 12, 5, 0, 7, 2, 14, 1, 15, 3, 13, 8, 10, 9, 11]

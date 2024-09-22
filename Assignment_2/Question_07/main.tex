@@ -25,10 +25,10 @@
 \usepackage{setspace}
 \usepackage{adjustbox}
 \hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=blue,
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,
+	urlcolor=blue,
 }
 \usepackage{xcolor,colortbl}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -36,19 +36,19 @@
 %Environment setup
 \mdfsetup{skipabove=\topskip,skipbelow=\topskip}
 \newrobustcmd\ExampleText{%
-An \textit{inhomogeneous linear} differential equation has the form
-\begin{align}
-L[v ] = f,
-\end{align}
-where $L$ is a linear differential operator, $v$ is the dependent
-variable, and $f$ is a given non−zero function of the independent
-variables alone.
+	An \textit{inhomogeneous linear} differential equation has the form
+	\begin{align}
+		L[v ] = f,
+	\end{align}
+	where $L$ is a linear differential operator, $v$ is the dependent
+	variable, and $f$ is a given non−zero function of the independent
+	variables alone.
 }
 \mdfdefinestyle{theoremstyle}{%
-linecolor=black,linewidth=1pt,%
-frametitlerule=true,%
-frametitlebackgroundcolor=gray!20,
-innertopmargin=\topskip,
+	linecolor=black,linewidth=1pt,%
+	frametitlerule=true,%
+	frametitlebackgroundcolor=gray!20,
+	innertopmargin=\topskip,
 }
 \mdtheorem[style=theoremstyle]{Problem}{Question Number}
 \setcounter{Problem}{6}
@@ -60,29 +60,29 @@ innertopmargin=\topskip,
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 \lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2
+	backgroundcolor=\color{backcolour},
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2
 }
 
 \lstset{style=mystyle}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Fill in the appropriate information below
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}     
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand\course{XXXX0000}                            % <-- course name   
 \newcommand\hwnumber{0}                                 % <-- homework number
 \newcommand\Information{Someone}                        % <-- personal information
@@ -108,7 +108,7 @@ innertopmargin=\topskip,
 \newcommand{\Q}{\mathbb Q}
 \newcommand{\NN}{\mathbb N}
 \newcommand{\PP}{\mathbb P}
-\DeclareMathOperator{\Mod}{Mod} 
+\DeclareMathOperator{\Mod}{Mod}
 \renewcommand\lstlistingname{Algorithm}
 \renewcommand\lstlistlistingname{Algorithms}
 \def\lstlistingautorefname{Alg.}
@@ -125,12 +125,12 @@ innertopmargin=\topskip,
 \newcommand{\tmtextit}[1]{\text{{\itshape{#1}}}}
 
 \newenvironment{itemizedot}{
-    \begin{itemize} 
-    \renewcommand{\labelitemi}{$\bullet$}
-    \renewcommand{\labelitemii}{$\bullet$}
-    \renewcommand{\labelitemiii}{$\bullet$}
-    \renewcommand{\labelitemiv}{$\bullet$}}
-    {\end{itemize}}
+	\begin{itemize}
+		\renewcommand{\labelitemi}{$\bullet$}
+		\renewcommand{\labelitemii}{$\bullet$}
+		\renewcommand{\labelitemiii}{$\bullet$}
+		\renewcommand{\labelitemiv}{$\bullet$}}
+		{\end{itemize}}
 
 \catcode`\<=\active\def<{
 \fontencoding{T1}\selectfont\symbol{60}\fontencoding{\encodingdefault}}
@@ -154,21 +154,21 @@ innertopmargin=\topskip,
 \newpage
 \begin{Problem}
 
-    \textbf{Make Thy Sypher004}
+	\textbf{Make Thy Sypher004}
 
-    Make your own version of Sypher004
+	Make your own version of Sypher004
 
-    \begin{itemize}
-        \item Substitution-Layer: Use the Sbox you generated earlier.
-        \item Permutation-Layer: Generate a random permutation layer.
-        \item Key-Addition-Layer remains same.
-        \item Draw the picture of two rounds of \textit{your} Sypher004 in the \textbf{notebook}.
-    \end{itemize}
+	\begin{itemize}
+		\item Substitution-Layer: Use the Sbox you generated earlier.
+		\item Permutation-Layer: Generate a random permutation layer.
+		\item Key-Addition-Layer remains same.
+		\item Draw the picture of two rounds of \textit{your} Sypher004 in the \textbf{notebook}.
+	\end{itemize}
 
 \end{Problem}
 
 \begin{Solution}
-    Solution is in the Notebook
+	Solution is in the Notebook
 \end{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
