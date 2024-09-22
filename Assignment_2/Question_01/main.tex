@@ -165,12 +165,18 @@
 
 \begin{Solution}
 	Procedure to get final keys:	
-	\begin{enumerate}
-		\item First We  guess K2 
-		\item 
-		\item 
-		\item 
-		\item
+	\begin{enumerate} 
+        \item \textbf{Collect message-cipher pairs} using \texttt{Utils.getPairs()} for cryptanalysis.
+        \item \textbf{Guess the second-round key} ($k_2$) by analyzing $T_1$ and $T_0$ counters from linear relations.
+        \item \textbf{Select likely $k_2$ candidates} based on the highest imbalance in $T_1$ and $T_0$.
+        \item \textbf{Refine the key search} for $k_0$ and $k_1$ using the Linear Approximation Table (LAT).
+        \item \textbf{Eliminate incorrect keys} and find the final key triplet $[k_0, k_1, k_2]$ using the \texttt{solver()} function.
+        \item \textbf{Initialize the full key space} for $(k_0, k_1)$ as all possible $32 \times 32$ combinations of 5-bit keys.
+        \item \textbf{Filter keys iteratively} by checking the XOR relations ($\alpha_{k_0} \oplus \beta_{k_1}$) with $T_1$ and $T_0$ values.
+        \item \textbf{Remove keys} where the XOR result does not match the expected output for $T_1 > T_0$ or $T_1 < T_0$.
+        \item \textbf{Continue refining keys} until only one pair $(k_0, k_1)$ remains that satisfies all conditions.
+        \item \textbf{Pass the master key into \texttt{keyExpansion()}} to expand the key and generate the full 44-word key schedule.
+        \item \textbf{Combine 15 bits from \texttt{k0}, \texttt{k1}, and \texttt{k2}} with 17-bit portions from the key expansion to form the final 32-bit key guess.
 	\end{enumerate}
 
 	\textbf{Images}
