@@ -187,7 +187,7 @@ innertopmargin=\topskip,
 
         \item Then we have to iterate over all keys guess that is from \texttt{(0x0110,0x0ff0)} for k5
         \item In each iteration We have to initialize one counter and then for each message pair among
-              $2^{16}$ pairs
+              filtered message pairs
               \begin{itemize}
                   \item get ciphertext for each message form pair $(c_1,c_2)$
                   \item then reverse the last round to get output for fourth round $(out_1,out_2)$
@@ -196,9 +196,20 @@ innertopmargin=\topskip,
               \end{itemize}
         \item When we get counter for each key guess then take one with the highest counter $(best keys)$ (maybe multiple candidates possible)
         \item Cross-check the candidates are with actual key for correct key
-        \item All This code is automated in \texttt{attack.py} file (it will take more than 15 min to get correct key)
-        \item Faster version of automated code is in file \texttt{multi\_thread.py} using multithreading. (around $10-12$ min)
+        \item All This code is automated in \texttt{attack.py} file (made faster my filter useful messages)
     \end{enumerate}
+
+    \textbf{Note}: 
+    In this experiment to get path for difference that will have
+    2 SBox active in last round we have written code in \texttt{analyze.py}.
+    This file will try all possible transition and get maximum probability path at last.
+    Observing output we can analyze that by satisfying all above condition we get
+    maximum probability  0.0027 on multiple path. We have taken one of this path.
+
+    All the output of this file is already dumped in path.txt. It is recommended
+    to not run analyze.py file as it will take more time to complete
+    execution(as it is checking all path)
+
 
 
     \pagebreak
