@@ -60,7 +60,7 @@ class Sypher004:
     def linear_layer(self, model, bit_grb_var):
         array = [0 for i in range(0,self.state_size)]
 
-        array_index = [0, 4, 8, 12, 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15]
+        array_index = [3, 6, 9, 12, 0, 7, 10, 13, 1, 4, 11, 14, 2, 5, 8, 15]
         for i in range(0, self.state_size):
             array[array_index[i]] = bit_grb_var[i]
 
@@ -86,7 +86,7 @@ class Sypher004:
 
 
 if __name__=='__main__':
-    cipher = "sypher004"
+    cipher = "sypher004_10"
 
     Round = int(input("Number of Round : "))
     state_size = 16
