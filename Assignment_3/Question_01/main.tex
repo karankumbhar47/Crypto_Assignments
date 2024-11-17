@@ -165,6 +165,103 @@
 \end{Problem}
 
 \begin{Solution}
+
+	\begin{enumerate}[label=\textbf{Step \arabic*:}]
+		\item \textbf{Encode the Name}
+
+		      The name used is \texttt{"Karan Sunil Kumbhar"}. As it contains 19 characters, we take only the first 12 characters:
+		      \[ \text{Name: } \texttt{"KARAN SUNIL "} \]
+
+		\item \textbf{Zero Padding to 16 Bytes}
+
+		      Zero padding is applied to make the length of the string 16 bytes. The padded string will be:
+		      \[ \text{Padded String: } \texttt{"KARAN SUNIL K\texttt{\char`00}\char`00\char`00\char`00"} \]
+
+		      In hexadecimal, this looks like:
+		      \[
+			      \text{State 1 : }
+			      \renewcommand{\arraystretch}{1.5}
+			      \setlength{\arrayrulewidth}{0.6mm}
+			      \setlength{\tabcolsep}{0.5em}
+			      \begin{array}{|>{\centering\arraybackslash}m{2em}|>{\centering\arraybackslash}m{2em}|>{\centering\arraybackslash}m{2em}|>{\centering\arraybackslash}m{2em}|}
+				      \hline
+				      \text{0x4B} & \text{0x4E} & \text{0x4E} & \text{0x00} \\
+				      \hline
+				      \text{0x41} & \text{0x20} & \text{0x49} & \text{0x00} \\
+				      \hline
+				      \text{0x52} & \text{0x53} & \text{0x4C} & \text{0x00} \\
+				      \hline
+				      \text{0x41} & \text{0x55} & \text{0x20} & \text{0x00} \\
+				      \hline
+			      \end{array}
+		      \]
+
+
+
+		      \pagebreak
+		\item \textbf{Apply ShiftRows Operation}
+
+		      The \textbf{ShiftRows} operation involves cyclically shifting the rows of the matrix:
+
+		      \[
+			      \text{State 2 : }
+			      \renewcommand{\arraystretch}{1.5}
+			      \setlength{\arrayrulewidth}{0.6mm}
+			      \setlength{\tabcolsep}{0.5em}
+			      \begin{array}{|>{\centering\arraybackslash}m{2em}|>{\centering\arraybackslash}m{2em}|>{\centering\arraybackslash}m{2em}|>{\centering\arraybackslash}m{2em}|}
+				      \hline
+				      \text{0x4B} & \text{0x4E} & \text{0x4E} & \text{0x00} \\
+				      \hline
+				      \text{0x20} & \text{0x49} & \text{0x00} & \text{0x41} \\
+				      \hline
+				      \text{0x4C} & \text{0x00} & \text{0x52} & \text{0x53} \\
+				      \hline
+				      \text{0x00} & \text{0x41} & \text{0x55} & \text{0x20} \\
+				      \hline
+			      \end{array}
+		      \]
+
+
+		\item \textbf{Apply SubBytes Operation}
+
+		      The \textbf{SubBytes} operation involves substituting each byte in the state matrix using the AES S-Box. Here are a few substitutions:
+		      \begin{itemize}
+			      \item \(\text{0x4B} \rightarrow \text{0xB3}\)
+			      \item \(\text{0x41} \rightarrow \text{0x83}\)
+			      \item \(\text{0x52} \rightarrow \text{0x00}\)
+			      \item \(\text{0x4E} \rightarrow \text{0x2F}\)
+			      \item \(\text{0x20} \rightarrow \text{0xB7}\)
+			      \item \(\text{0x53} \rightarrow \text{0xED}\)
+			      \item \(\text{0x55} \rightarrow \text{0xFC}\)
+			      \item \(\text{0x49} \rightarrow \text{0x3B}\)
+			      \item \(\text{0x4C} \rightarrow \text{0x29}\)
+			      \item \(\text{0x00} \rightarrow \text{0x63}\)
+		      \end{itemize}
+
+		      After applying \textbf{SubBytes}, the state matrix becomes:
+		      \[
+			      \text{State 3 : }
+			      \renewcommand{\arraystretch}{1.5}
+			      \setlength{\arrayrulewidth}{0.6mm}
+			      \setlength{\tabcolsep}{0.5em}
+			      \begin{array}{|>{\centering\arraybackslash}m{2em}|>{\centering\arraybackslash}m{2em}|>{\centering\arraybackslash}m{2em}|>{\centering\arraybackslash}m{2em}|}
+				      \hline
+				      \text{0xB3} & \text{0x2F} & \text{0x2F} & \text{0x63} \\
+				      \hline
+				      \text{0xB7} & \text{0x3B} & \text{0x63} & \text{0x83} \\
+				      \hline
+				      \text{0x29} & \text{0x63} & \text{0x00} & \text{0xED} \\
+				      \hline
+				      \text{0x63} & \text{0x83} & \text{0xFC} & \text{0xB7} \\
+				      \hline
+			      \end{array}
+		      \]
+
+		      After encoding the name, padding, and applying the AES operations
+		      (ShiftRows and SubBytes), the final state matrix is shown above.
+
+	\end{enumerate}
+
 \end{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

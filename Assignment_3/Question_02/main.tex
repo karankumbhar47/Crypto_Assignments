@@ -59,7 +59,7 @@
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-\lstdefinestyle{mystyle}{
+\lstdefinestyle{Mystyle}{
 	backgroundcolor=\color{backcolour},
 	commentstyle=\color{codegreen},
 	keywordstyle=\color{magenta},
@@ -67,18 +67,18 @@
 	stringstyle=\color{codepurple},
 	basicstyle=\ttfamily\footnotesize,
 	breakatwhitespace=false,
-	breaklines=true,
+	breaklines=false,
 	captionpos=b,
 	keepspaces=true,
 	numbers=left,
-	numbersep=5pt,
+	numbersep=4pt,
 	showspaces=false,
 	showstringspaces=false,
 	showtabs=false,
 	tabsize=2
 }
 
-\lstset{style=mystyle}
+\lstset{style=Mystyle}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Fill in the appropriate information below
@@ -153,18 +153,45 @@
 %New problem
 \newpage
 \begin{Problem}
-    \begin{itemize}
+	\begin{itemize}
 		\item Write a code to generate the DDT of \texttt{AES-SBox} in your favorite programming language.
-        \item Retrieve the following info from the DDT using a function for each:
-        \begin{enumerate}
-            \item Number of zeros in the table.
-            \item Number of 4's per fixed input difference.
-            \item Number of 4's per fixed output difference.
-        \end{enumerate}
-    \end{itemize}
+		\item Retrieve the following info from the DDT using a function for each:
+		      \begin{enumerate}
+			      \item Number of zeros in the table.
+			      \item Number of 4's per fixed input difference.
+			      \item Number of 4's per fixed output difference.
+		      \end{enumerate}
+	\end{itemize}
 \end{Problem}
 
 \begin{Solution}
+
+	\begin{itemize}
+		\item \textbf{Code to generate DDT}
+
+		      \begin{center}
+			      \includegraphics[width=15cm]{p1.png}
+		      \end{center}
+
+		      \pagebreak
+		\item \textbf{Code to calculate following parts}
+		      \begin{center}
+			      \includegraphics[width=15cm]{p2.png}
+		      \end{center}
+		      \textbf{Output For the following parts}
+		      \begin{itemize}
+			      \item Number of zeros in the table.
+			      \item Number of 4's per fixed input difference.
+			      \item Number of 4's per fixed output difference.
+
+		      \end{itemize}
+
+		      \begin{center}
+			      \includegraphics[width=15cm]{output.png}
+		      \end{center}
+	\end{itemize}
+
+
 \end{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
