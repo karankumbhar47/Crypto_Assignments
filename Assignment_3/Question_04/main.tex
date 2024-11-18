@@ -172,6 +172,50 @@
 \end{Problem}
 
 \begin{Solution}
+
+	\textbf{Distinguishing Pattern as per location changes}
+	\begin{enumerate}[label=\textbf{\arabic*.}]
+		\item \textbf{}
+		\item
+		      \textbf{Byte Location Modification}: The primary observation is that
+		      modifying a byte at a specific location in the input message results in a
+		      noticeable change in the ciphertext after encryption, specifically after
+		      applying round keys and substitutions in the encryption process. This is a
+		      common feature of secure encryption algorithms like AES, where even small
+		      changes in the input can cause significant alterations in the ciphertext.
+		\item
+		      \textbf{XOR Variation}: Each message modification is accompanied by
+		      a variation in the XOR results at different stages of encryption.
+		      This variation is consistent with the behavior of block ciphers,
+		      where altering one byte causes changes in the subsequent rounds of
+		      encryption, especially after key application, substitution, and
+		      mixing columns.
+		\item
+		      \textbf{Changes in Ciphertext}: As we observe the changes in
+		      ciphertext from Message 1 to Message 2, it's evident that even
+		      changing a single byte in the message leads to a different output,
+		      indicating the sensitivity of the encryption process to the input.
+		\item
+
+		      \textbf{Pattern Consistency Across Locations}: As the byte modification
+		      shifts to different locations (from 0,0 to 2,2), the pattern of changes in
+		      the XOR variations and the ciphertext remains similar. Each location results
+		      in changes in the XOR results and, subsequently, the ciphertext. However,
+		      the magnitude and specific changes differ depending on which byte is
+		      altered.
+		\item
+		      \textbf{Key Insight}: This reinforces the concept of the avalanche
+		      effect in cryptography, where small changes in the input (message)
+		      cause drastic changes in the ciphertext, making it difficult to
+		      deduce any correlation between the plaintext and ciphertext without
+		      the key.
+
+	\end{enumerate}
+
+	In conclusion, the observed pattern confirms that modifying the location of
+	a byte in the input affects the encryption process in a non-linear and
+	sensitive way, leading to significant changes in the final output, which is
+	typical of secure encryption mechanisms.
 \end{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

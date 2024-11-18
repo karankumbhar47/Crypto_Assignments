@@ -153,16 +153,66 @@
 %New problem
 \newpage
 \begin{Problem}
-    \begin{itemize}
+	\begin{itemize}
 		\item Using your favorite programming language implement the AES key-expansion algorithm
 		\item Now use the state matrix initialized with your name in Problem 1 as your initial key
 		\item Show the 10 rounds keys in the main assignment1.
 		\item For the fifth round-key show all the steps of the key-expansion algorithm that leads to
-the sixth round key.
-    \end{itemize}
+		      the sixth round key.
+	\end{itemize}
 \end{Problem}
 
 \begin{Solution}
+	\begin{itemize}
+		\item \textbf{AES Key Expansion Algorithm}
+		      \begin{center}
+			      \includegraphics[width=15cm]{p1.png}
+		      \end{center}
+
+		      \pagebreak
+		\item \textbf{Initial Key}
+		      \textbf{Note}
+
+		      \begin{itemize}
+			      \item [1. ]
+			            Dump initial key. The initial key taken from python code in file with name \texttt{Key\_Expansion.py}
+			            (when python code rerun this key will be updated)
+			      \item [2. ]
+
+			            Python File \texttt{Key\_Expansion.py} should \textbf{run in the directory \texttt{Question\_03}}(As it is creating
+			            \texttt{.tex} file in current directory, which is then used by the latex code to fetch keys)
+		      \end{itemize}
+
+		      \input{initial_key.tex}
+
+		\item \textbf{All 10 Round Keys}
+
+		      \begin{itemize}
+			      \item [1. ]
+			            Dump all round keys.All round keys taken from output of python code in
+			            file with name \texttt{Key\_Expansion.py} (when python code rerun these keys will be updated)
+			      \item [2. ]
+
+			            Python File \texttt{Key\_Expansion.py} should \textbf{run in the directory \texttt{Question\_03}}(As it is creating
+			            \texttt{.tex} file in current directory, which is then used by the latex code to fetch all round keys)
+			      \item [3. ]
+			            All Round keys are shown on \textbf{next page}.
+		      \end{itemize}
+		      \pagebreak
+		      \input{round_keys.tex}
+
+		\item \textbf{AES Key Expansion - Stepwise Solution for Round 5 Key}
+
+		      Below is a stepwise explanation of the transformations involved in generating the round key for the sixth round, from the fifth round key
+
+		      \textbf{Note : Following result is generated from the python code}
+
+
+		      \begin{enumerate}[label=\textbf{Step \arabic*:}]
+			      \input{steps.tex}
+		      \end{enumerate}
+
+	\end{itemize}
 \end{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

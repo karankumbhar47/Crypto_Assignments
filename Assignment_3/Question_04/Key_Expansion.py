@@ -18,42 +18,61 @@ Sbox = [
     0x8C, 0xA1, 0x89, 0x0D, 0xBF, 0xE6, 0x42, 0x68, 0x41, 0x99, 0x2D, 0x0F, 0xB0, 0x54, 0xBB, 0x16
 ]
 
+# Round constants
+RoundConst = [0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1B, 0x36]
 
-def compute_ddt(sbox):
-    n = len(sbox)
-    ddt = [[0] * n for _ in range(n)]
+MIxColMatrix = [
+      [0x02, 0x03, 0x01, 0x01],
+      [0x01, 0x02, 0x03, 0x01],
+      [0x01, 0x01, 0x02, 0x03],
+      [0x03, 0x01, 0x01, 0x02]
+   ]
 
-    for x in range(n):
-        for y in range(n):
-            diff = sbox[x] ^ sbox[y]
-            ddt[diff][x ^ y] += 1
-    
-    return ddt
-
-
-def count_zeros(ddt):
-    return sum([row.count(0) for row in ddt])
-
-
-def count_4s_per_input(ddt):
-    return [sum(1 for value in row if value == 4) for row in ddt]
+# Initial key
+initial_key = [
+    [0xB3, 0x2F, 0x2F, 0x63],
+    [0xB7, 0x3B, 0x63, 0x83],
+    [0x29, 0x63, 0x00, 0xED],
+    [0x63, 0x83, 0xFC, 0xB7]
+]
 
 
-def count_4s_per_output(ddt):
-    return [sum(1 for row in ddt if row[col] == 4) for col in range(256)]
+def transpose_key(matrix):
+    n = len(matrix)
+    transposed = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            transposed[i][j] = matrix[j][i]
+    return transposed
 
 
-def main():
-    ddt = compute_ddt(Sbox)
-    num_zeros = count_zeros(ddt)
-    count_4s_input = count_4s_per_input(ddt)
-    count_4s_output = count_4s_per_output(ddt)
-
-    # Output the results
-    print(f"Number of zeros in the DDT: {num_zeros}\n")
-    print(f"Number of 4's per fixed input difference(diff as per array index) :\n {count_4s_input}\n")
-    print(f"Number of 4's per fixed output difference(diff as per array index) :\n {count_4s_output}\n")
+def sub_col(col):
+    return [Sbox[item] for item in col]
 
 
-if __name__ == "__main__":
-    main()
+def rotate_col(col):
+    return col[1:]+[col[0]]
+
+
+def xor_cols(word1, word2):
+    return [b1 ^ b2 for b1, b2 in zip(word1, word2)]
+
+
+def generate_round_keys(key):
+    all_keys = [key]
+
+    for i in range(10):
+        previous_key = transpose_key(all_keys[i])
+        prev_last_col = previous_key[-1]
+        prev_last_col_rot = rotate_col(prev_last_col)
+        prev_last_col_sub = sub_col(prev_last_col_rot)
+        round_const_arr = [RoundConst[i], 0, 0, 0]
+        prev_last_col_xor = xor_cols(prev_last_col_sub, round_const_arr)
+
+        new_key = []
+        for j in range(4):
+            new_key.append(xor_cols(prev_last_col_xor if j ==
+                           0 else new_key[j-1], previous_key[j]))
+
+        all_keys.append(transpose_key(new_key))
+    return all_keys
