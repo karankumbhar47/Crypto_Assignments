@@ -22,7 +22,7 @@ def transpose_key(matrix):
 
 
 def write_initialKey(initial_key):
-    output_filename = "initial_key.tex"
+    output_filename = "./texFiles/initial_key.tex"
     with open(output_filename, "w") as f:
         f.write("\\[\n")
         f.write("    \\text{Initial Key : }\n")
@@ -41,7 +41,7 @@ def write_initialKey(initial_key):
 
 
 def write_roundKeys(round_keys):
-    output_filename = "round_keys.tex"
+    output_filename = "./texFiles/round_keys.tex"
     with open(output_filename, "w") as f:
         f.write("\\[\n")
         f.write("    \\renewcommand{\\arraystretch}{1.5}\n")
@@ -85,7 +85,7 @@ def write_roundKeys(round_keys):
 
 
 def write_intermediate_steps(round_keys, steps_array):
-    output_filename = "steps.tex"
+    output_filename = "./texFiles/steps.tex"
     with open(output_filename, "w") as f:
         f.write("\\item \\textbf{Initial Fifth Round Key}\n\n")
         f.write(

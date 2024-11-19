@@ -82,16 +82,21 @@ def main():
     for i in range(4):
         for j in range(4):
             message_pairs = give_message_pairs(i, j)
-            cipher1, mid_state1 = two_round_aes(message_pairs[0], initial_key)
-            cipher2, mid_state2 = two_round_aes(message_pairs[1], initial_key)
+
             print(f"location {i},{j}\n")
             print("Message 1 : ", state_matrix_to_hex(message_pairs[0]))
             print("Message 2 : ", state_matrix_to_hex(message_pairs[1]))
+
+            cipher1, mid_state1 = two_round_aes(message_pairs[0], initial_key)
+            cipher2, mid_state2 = two_round_aes(message_pairs[1], initial_key)
+
             print("Cipher  1 : ", cipher1)
             print("Cipher  2 : ", cipher2)
 
             print("\nXor Variation\n")
             xor_dicts(mid_state1, mid_state2)
+            print("\nCipher Diff")
+            print(hex_diff(cipher1, cipher2))
             print(f"\n{'='*60}\n")
 
 

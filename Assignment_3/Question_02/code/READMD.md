@@ -3,10 +3,10 @@
 1. Run the python file
 
 ```bash
-python AES_DDT.py
+python code/AES_DDT.py
 ```
 
-2. Observer the ouput
+2. Observer the output
 ```bash
 Number of zeros in the DDT: 33150
 

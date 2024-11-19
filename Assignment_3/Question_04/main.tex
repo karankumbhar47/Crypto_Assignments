@@ -173,49 +173,141 @@
 
 \begin{Solution}
 
-	\textbf{Distinguishing Pattern as per location changes}
-	\begin{enumerate}[label=\textbf{\arabic*.}]
-		\item \textbf{}
-		\item
-		      \textbf{Byte Location Modification}: The primary observation is that
-		      modifying a byte at a specific location in the input message results in a
-		      noticeable change in the ciphertext after encryption, specifically after
-		      applying round keys and substitutions in the encryption process. This is a
-		      common feature of secure encryption algorithms like AES, where even small
-		      changes in the input can cause significant alterations in the ciphertext.
-		\item
-		      \textbf{XOR Variation}: Each message modification is accompanied by
-		      a variation in the XOR results at different stages of encryption.
-		      This variation is consistent with the behavior of block ciphers,
-		      where altering one byte causes changes in the subsequent rounds of
-		      encryption, especially after key application, substitution, and
-		      mixing columns.
-		\item
-		      \textbf{Changes in Ciphertext}: As we observe the changes in
-		      ciphertext from Message 1 to Message 2, it's evident that even
-		      changing a single byte in the message leads to a different output,
-		      indicating the sensitivity of the encryption process to the input.
-		\item
+\textbf{Observations}
+\begin{itemize}
+\item \textbf{Output}
 
-		      \textbf{Pattern Consistency Across Locations}: As the byte modification
-		      shifts to different locations (from 0,0 to 2,2), the pattern of changes in
-		      the XOR variations and the ciphertext remains similar. Each location results
-		      in changes in the XOR results and, subsequently, the ciphertext. However,
-		      the magnitude and specific changes differ depending on which byte is
-		      altered.
-		\item
-		      \textbf{Key Insight}: This reinforces the concept of the avalanche
-		      effect in cryptography, where small changes in the input (message)
-		      cause drastic changes in the ciphertext, making it difficult to
-		      deduce any correlation between the plaintext and ciphertext without
-		      the key.
+To get output for observation of xor variation run the python file named as
+\texttt{AES\_2Round.py} this will dump the output in termial. Ouput will  be as
+follows
+\begin{center}
+	\includegraphics[width=10cm]{p1.png}
+\end{center}
 
-	\end{enumerate}
+\pagebreak
+\item \textbf{Distinguishing Pattern}
+\begin{itemize}
+	\item In message pair only one byte is different, So only byte is not zero in xor diff.
 
-	In conclusion, the observed pattern confirms that modifying the location of
-	a byte in the input affects the encryption process in a non-linear and
-	sensitive way, leading to significant changes in the final output, which is
-	typical of secure encryption mechanisms.
+	      \fbox{00000000ed0000000000000000000000}
+	\item In Row Shift Operation Xor diff is shifted by some position
+	      \begin{center}
+		      \text{diff before shifting}
+		      \fbox{00000000005e00000000000000000000}
+
+		      \text{diff after shifting }
+		      \fbox{000000005e0000000000000000000000}
+	      \end{center}
+	\item In Mix column diff increases in more positions, than previous one
+	      \begin{center}
+		      \text{diff before mix column}
+		      \fbox{000000005e0000000000000000000000}
+
+		      \text{ diff after mix column}
+		      \fbox{  e2000000bc0000005e0000005e000000}
+	      \end{center}
+	\item Diff in Operation like state xor with key and
+	      Substitution diff not changes it is same as previous diff
+\end{itemize}
+
+\subsection*{1. Verifying a Distinguishing Pattern in the Output} A
+distinguishing pattern is any observable behavior during the AES
+transformations (e.g., XOR differences) that allows one to differentiate AES
+from a truly random permutation. Based on the implementation and results, the
+following observations were made:
+
+\begin{itemize}
+	\item The XOR of the ciphertexts consistently has exactly
+	      \textbf{4 non-zero bytes} for the given input difference.
+	\item The propagation of the XOR difference through the AES transformations
+	      (\texttt{SubBytes}, \texttt{ShiftRows}, and \texttt{MixColumns}) shows
+	      deterministic behavior, reflecting the structured nature of AES.
+	\item Unlike a truly random permutation, which would not produce consistent patterns, AES
+	      exhibits predictable propagation of input differences.
+\end{itemize}
+
+This deterministic propagation of XOR differences through the AES steps
+serves as the \textbf{distinguishing pattern}.
+
+\paragraph{Example:} The following example illustrates the distinguishing
+pattern:
+
+\begin{itemize}
+	\item \textbf{Messages:}
+	      \begin{align*}
+		      \text{Message 1:} &
+		      \quad \fbox{\texttt{59d0b9515b009b6c69aa9654339a2d8b}} \\
+		      \text{Message 2:} & \quad
+		      \fbox{\texttt{59d0b9515b009b6c69aa9654339a2dff}}
+	      \end{align*}
+	\item
+	      \textbf{Ciphertexts:}
+	      \begin{align*}
+		      \text{Cipher 1:} & \quad
+		      \fbox{\texttt{992b44622099b43ee6539288017123b6}} \\
+		      \text{Cipher 2:} & \quad
+		      \fbox{\texttt{c32b44622099b409e653e788012223b6}}
+	      \end{align*}
+	\item \textbf{XOR of Ciphertexts:}
+	      \[
+		      \text{Cipher XOR:} \quad
+		      \texttt{5a000000000000370000750000530000}
+	      \]
+	      The XOR difference shows exactly
+	      \textbf{4 non-zero bytes}, which is a consistent observation.
+\end{itemize}
+
+\paragraph{Propagation of XOR Difference:} The following table illustrates
+how the XOR difference propagates through each AES step for the above input:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Step}                   & \textbf{XOR Difference}                   \\
+		\hline
+		Message XOR                     & \texttt{00000000000000000000000000000074} \\
+		Round Key Apply                 & \texttt{00000000000000000000000000000074} \\
+		First Round \texttt{SubBytes}   & \texttt{000000000000000000000000000000b9} \\
+		First Round \texttt{ShiftRows}  & \texttt{000000000000000000000000b9000000} \\
+		First Round \texttt{MixColumns} & \texttt{b9000000b9000000d000000069000000} \\
+		First Round Key Apply           & \texttt{b9000000b9000000d000000069000000} \\
+		Second Round \texttt{SubBytes}  & \texttt{5a000000370000007500000053000000} \\
+		Second Round \texttt{ShiftRows} & \texttt{5a000000000000370000750000530000} \\
+		Second Round Key Apply          & \texttt{5a000000000000370000750000530000} \\
+		CipherText                      & \texttt{5a000000000000370000750000530000} \\
+		\hline
+	\end{tabular}
+	\caption{Propagation of XOR Difference Through Each AES Step}
+\end{table}
+
+\subsection*{2. How the Pattern Changes with Modified Byte Location} When
+the location of the modified byte in the second input message is changed, the
+propagation of the XOR difference changes as follows:
+
+\begin{itemize}
+	\item The positions of the non-zero XOR bytes in the
+	      ciphertext vary based on the modified byte's location in the input.
+	\item During the \texttt{ShiftRows} step, the XOR difference is shifted to
+	      different positions based on the row-wise shifts.
+	\item During the
+	      \texttt{MixColumns} step (first round only), the XOR difference spreads to
+	      multiple bytes within the same column, resulting in more non-zero bytes in
+	      the XOR.
+\end{itemize}
+
+\paragraph{Empirical Observations:} For example, modifying the byte at
+position \texttt{(3, 3)} in the input message produced the following results:
+
+\begin{itemize}
+	\item \textbf{Ciphertext XOR:} \[ \text{Cipher XOR:} \quad
+		      \texttt{5a000000000000370000750000530000} \] The XOR difference has \textbf{4
+		      non-zero bytes} at fixed positions: \texttt{(0, 1)}, \texttt{(14, 15)},
+	      \texttt{(20, 21)}, \texttt{(26, 27)}.
+	\item When the modified byte is moved to position \texttt{(2, 2)}, the
+	      non-zero XOR bytes in the ciphertext appear at different positions but
+	      follow the same deterministic propagation pattern.
+\end{itemize}
 \end{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

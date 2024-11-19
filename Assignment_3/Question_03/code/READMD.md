@@ -2,8 +2,10 @@
 
 ### Overview
 1. `Utils.py` 
-    - This File contains function that will dump the latex code into `.tex` file.
-    - This File Also contains function that will print output in formatted way.
+    This file contains utility function to help our main code 
+        - Functions that will generate two message pairs
+        - Function that will convert message to state matrix and vice versa
+        - Function that will
 2. `Key_Expansion.py`
     - This File contains mainly Key Expansion Algorithm. 
     - This program will show 10 round key in terminal output.
@@ -18,7 +20,7 @@ cd Question_03
 2. Run the python file
 
 ```bash
-python Key_Expansion.py
+python code/Key_Expansion.py
 ```
 
 3. Observer the Output

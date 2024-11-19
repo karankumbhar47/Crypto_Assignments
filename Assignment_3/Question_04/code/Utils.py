@@ -52,7 +52,6 @@ def give_message_pairs(i, j):
     message = generate_128_bit_message_openssl()
     original_state = hex_to_state_matrix(message)
     modified_state = modify_state(message, i, j, 0xFF)
-
     return [original_state, modified_state]
 
 
