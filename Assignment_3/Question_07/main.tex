@@ -161,6 +161,52 @@
 \end{Problem}
 
 \begin{Solution}
+\section*{Mathematical Justification for IV in CTR and CBC}
+
+\subsection*{1. CTR (Counter Mode)}
+
+In CTR mode, the initialization vector (IV) acts as the initial counter value, which is incremented for each block of data. The encryption process involves applying the counter to the block cipher and then XOR-ing the result with the plaintext to produce the ciphertext.
+
+Let \( P \) be the plaintext, \( C \) be the ciphertext, \( K \) be the secret key, and \( E_K \) be the encryption function. The IV is denoted as \( IV \) and is used as the initial counter \( ctr_0 \), which is incremented for each block:
+\[
+C_i = P_i \oplus E_K(ctr_i)
+\]
+where \( ctr_i = IV + i \), and \( i \) is the block index.
+
+\subsubsection*{Mathematical Justification for Nonce:}
+
+The security of CTR relies on the uniqueness of the counter for each block under the same key. As long as the counter is unique (i.e., each \( ctr_i \) is distinct), even if the IV is reused, the encryption process remains secure, as long as the counter does not repeat for any given key. The IV does not need to be random, but must only be distinct for each session.
+
+For a nonce \( IV \), we only need:
+\[
+ctr_i \neq ctr_j \quad \text{for} \quad i \neq j
+\]
+This ensures that each encryption is unique without requiring unpredictability in the IV itself.
+
+\subsection*{2. CBC (Cipher Block Chaining)}
+
+In CBC mode, the IV is used to XOR the first plaintext block before applying the block cipher. For subsequent blocks, the previous ciphertext is used to XOR the current plaintext.
+
+Let \( P \) be the plaintext, \( C \) be the ciphertext, \( K \) the secret key, and \( E_K \) the encryption function. The encryption process for CBC is:
+\[
+C_1 = E_K(IV \oplus P_1)
+\]
+\[
+C_i = E_K(C_{i-1} \oplus P_i) \quad \text{for} \quad i > 1
+\]
+
+\subsubsection*{Mathematical Justification for Randomness and Unpredictability:}
+
+The IV is XOR-ed with the first plaintext block \( P_1 \), and this value is then encrypted to produce the first ciphertext block \( C_1 \). If the IV is predictable or reused, it introduces the risk of identical ciphertexts for identical plaintexts, breaking confidentiality.
+
+For instance, if an attacker knows that:
+\[
+IV_1 = IV_2
+\]
+and they observe the ciphertexts corresponding to the same plaintext in two different sessions, they could potentially infer that the plaintext is the same in both cases. This undermines the security of CBC mode.
+
+To prevent this, the IV must be random and unpredictable, ensuring that even identical plaintexts will produce different ciphertexts.
+
 \end{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
