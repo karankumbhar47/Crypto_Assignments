@@ -1,0 +1,417 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \setmathfont{TeX Gyre Termes Math}
+%Packages
+\documentclass[10pt, a4paper]{article}
+\usepackage[top=3cm, bottom=4cm, left=2cm, right=2cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd, fancyhdr, color, comment, graphicx, environ}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{mathrsfs}
+% \usepackage[math-style=ISO]{unicode-math}
+\usepackage{lastpage}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{sectsty}
+\usepackage{thmtools}
+\usepackage{shadethm}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{adjustbox}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,
+	urlcolor=blue,
+}
+\usepackage{xcolor,colortbl}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Environment setup
+\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+\newrobustcmd\ExampleText{%
+	An \textit{inhomogeneous linear} differential equation has the form
+	\begin{align}
+		L[v ] = f,
+	\end{align}
+	where $L$ is a linear differential operator, $v$ is the dependent
+	variable, and $f$ is a given non−zero function of the independent
+	variables alone.
+}
+\mdfdefinestyle{theoremstyle}{%
+	linecolor=black,linewidth=1pt,%
+	frametitlerule=true,%
+	frametitlebackgroundcolor=gray!20,
+	innertopmargin=\topskip,
+}
+\mdtheorem[style=theoremstyle]{Problem}{Question Number}
+\setcounter{Problem}{4}
+\newenvironment{Solution}{\textbf{Solution.}}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fill in the appropriate information below
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand\course{XXXX0000}                            % <-- course name   
+\newcommand\hwnumber{4}                                 % <-- homework number
+\newcommand\Information{Someone}                        % <-- personal information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Page setup
+\pagestyle{fancy}
+\headheight 35pt
+\lhead{\today \hspace*{4cm} Key-Breakers}
+% \rhead{\includegraphics[width=1.2cm]{../images/logo.png}}
+\lfoot{}
+\pagenumbering{arabic}
+\cfoot{\small\thepage}
+\rfoot{}
+\headsep 1.2em
+\renewcommand{\baselinestretch}{1.25}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Add new commands here
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\PP}{\mathbb P}
+\DeclareMathOperator{\Mod}{Mod}
+\renewcommand\lstlistingname{Algorithm}
+\renewcommand\lstlistlistingname{Algorithms}
+\def\lstlistingautorefname{Alg.}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{lemma}{Lemma}
+\newtheorem{case}{Case}
+\newcommand{\assign}{:=}
+\newcommand{\infixiff}{\text{ iff }}
+\newcommand{\nobracket}{}
+\newcommand{\backassign}{=:}
+\newcommand{\tmmathbf}[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand{\tmop}[1]{\ensuremath{\operatorname{#1}}}
+\newcommand{\tmtextbf}[1]{\text{{\bfseries{#1}}}}
+\newcommand{\tmtextit}[1]{\text{{\itshape{#1}}}}
+
+\newenvironment{itemizedot}{
+	\begin{itemize}
+		\renewcommand{\labelitemi}{$\bullet$}
+		\renewcommand{\labelitemii}{$\bullet$}
+		\renewcommand{\labelitemiii}{$\bullet$}
+		\renewcommand{\labelitemiv}{$\bullet$}}
+		{\end{itemize}}
+
+\catcode`\<=\active\def<{
+\fontencoding{T1}\selectfont\symbol{60}\fontencoding{\encodingdefault}}
+\catcode`\>=\active\def>{
+\fontencoding{T1}\selectfont\symbol{62}\fontencoding{\encodingdefault}}
+\catcode`\<=\active\def<{
+\fontencoding{T1}\selectfont\symbol{60}\fontencoding{\encodingdefault}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Begin now!
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Start the assignment now
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section*{S-box Analysis of Midori64}
+
+\noindent The Midori64 cipher is a lightweight block cipher designed for
+energy-efficient applications. It employs a 4-bit S-box in its substitution
+layer, which plays a critical role in ensuring the cipher's security. The S-box
+used in Midori64, along with its Differential Distribution Table (DDT), is
+analyzed to evaluate its resistance to differential cryptanalysis.
+
+\subsection*{Midori64 S-box}
+\noindent The S-box used in the Midori64 cipher is shown below:
+
+\begin{table}[h!]
+	\centering
+	\setlength{\tabcolsep}{8pt}
+	\renewcommand{\arraystretch}{1.5}
+	\input{texFiles/sbox_table.tex} % Generated from Python
+	\hspace{2pt}
+	\caption{Midori64 S-box}
+\end{table}
+
+\subsection*{Differential Distribution Table (DDT)}
+\noindent The Differential Distribution Table (DDT) of the S-box is presented
+below. It quantifies the probability of each output difference occurring for a
+given input difference.
+
+\begin{table}[h!]
+	\centering
+	\label{tab:ddt}
+	\caption{Differential Distribution Table (DDT)}
+	% \renewcommand{\arraystretch}{1}
+	\setlength{\tabcolsep}{10pt}
+	\hspace{2pt}
+	\input{texFiles/ddt_table.tex} % Generated from Python
+\end{table}
+
+\newpage
+\textbf{Value Counts in the DDT:}
+
+The distribution of values in the Difference Distribution Table (DDT) is as follows:
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Value} & \textbf{Count} \\ \hline
+		0              & 159            \\ \hline
+		2              & 72             \\ \hline
+		4              & 24             \\ \hline
+		16             & 1              \\ \hline
+	\end{tabular}
+\end{table}
+
+\subsection*{Differential Distribution Table (DDT) Analysis}
+
+\subsubsection*{1. Differential Uniformity}
+\begin{itemize}
+	\item \textbf{Observation:} The maximum value in the DDT is 4, which is the
+	      largest count (excluding the first row). This means that the
+	      \textit{differential uniformity} is \( \Delta_{\text{max}} = 4 \).
+
+	\item \textbf{Conclusion:} The differential uniformity of 4 indicates that
+	      the cipher is somewhat resistant to differential cryptanalysis, but it is
+	      not as strong as S-boxes with \( \Delta_{\text{max}} = 4 \) (e.g., AES)
+	      which occurs only once in row.  As in Midori cipher's DDT contains  \(
+	      \Delta_{\text{max}} = 4 \) more than one for the row.  However, for
+	      lightweight ciphers like Midori, this trade-off is acceptable, as it
+	      balances security with efficiency.
+\end{itemize}
+
+\subsubsection*{2. Uniform Distribution of Values}
+\begin{itemize}
+	\item
+	      \textbf{Observation:} The values in the DDT are relatively evenly distributed,
+	      and there are no particular input-output differential pairs that dominate the
+	      table.
+	\item
+	      \textbf{Conclusion:} This suggests that the S-box does not have significant
+	      biases or vulnerabilities that would make it easier for attackers to exploit
+	      specific differentials. This balanced distribution enhances the cipher's
+	      resistance to differential cryptanalysis.
+\end{itemize}
+
+\subsubsection*{3. Null Entries in the DDT}
+\begin{itemize}
+	\item
+	      \textbf{Observation:} Several entries in the DDT are 0, which means
+	      that certain input differences do not produce specific output
+	      differences. This occurs in rows like the first and others.
+	\item
+	      \textbf{Conclusion:} Null entries limit an attacker’s ability to craft
+	      specific differential trails, as they indicate that some differentials
+	      cannot happen. This property adds an extra layer of security to the
+	      S-box.
+\end{itemize}
+
+\subsubsection*{4. Symmetry}
+\begin{itemize}
+	\item
+	      \textbf{Observation:} The DDT is symmetric, i.e., if \( D(x, y) \) is an entry,
+	      then \( D(y, x) \) is also an entry.
+	\item
+	      \textbf{Conclusion:} This symmetry is expected for well-designed S-boxes and
+	      confirms the correctness of the DDT, ensuring that the cryptographic function
+	      behaves consistently in both directions (input to output and vice versa).
+\end{itemize}
+
+\subsubsection*{5. Compliance with DDT Properties}
+
+The following propositions hold true for the DDT of Midori64:
+
+\begin{itemize}
+	\item \textbf{Proposition 1:} Every entry in the DDT is a non-negative even
+	      integer between 0 and \( 2^n \).
+	\item \textbf{Proposition 2:} The top-left entry of the DDT is \( 2^n \).
+	\item \textbf{Proposition 3:} The first row consists of all zeros except the
+	      first entry, which is \( 2^n \).
+	\item \textbf{Proposition 4:} The first column consists of all zeros except
+	      the first entry, which is \( 2^n \).
+	\item \textbf{Proposition 5:} The sum of the entries of each row is \( 2^n \).
+	\item \textbf{Proposition 6:} If the S-box is bijective, then every row and
+	      column of the DDT adds up to \( 2^n \).
+\end{itemize}
+
+The DDT of the Midori64 S-box adheres to these properties, which confirms that
+the S-box is well-structured and complies with the expected cryptographic
+behaviors.
+
+\subsubsection*{Comparative Analysis with Other Ciphers}
+
+\begin{itemize}
+	\item \textbf{Group 1} AES has an S-box with \( \Delta_{\text{max}} = 2 \),
+	      which is more optimal than Midori64's \( \Delta_{\text{max}} = 4 \). AES is
+	      stronger against differential cryptanalysis due to this lower value but is
+	      not as efficient as Midori in lightweight scenarios where energy consumption
+	      is a concern.
+	\item \textbf{Group 2} The PRESENT cipher also has \( \Delta_{\text{max}} = 4 \),
+	      similar to Midori64. Both ciphers offer a balance between security and
+	      efficiency, suitable for constrained environments.
+\end{itemize}
+
+\subsubsection*{Conclusion}
+
+The Midori64 S-box offers a reasonable trade-off between security and
+efficiency, making it suitable for lightweight cryptographic applications. While
+it does not have the optimal differential uniformity of \( \Delta_{\text{max}} = 2 \)
+seen in AES, it remains secure against differential cryptanalysis and other
+attacks due to its balanced distribution and structural properties.
+\pagebreak
+
+\subsection*{Linear Approximation Table (LAT) Analysis of the Midori64 S-box}
+
+\noindent The Linear Approximation Table (LAT) for the S-box is a key component
+for analyzing the resistance of the S-box to linear cryptanalysis. It quantifies
+how well the S-box behaves under linear approximations, with lower values
+indicating better resistance. The LAT for the Midori64 S-box is shown below:
+
+\begin{table}[h!]
+	\centering
+	\label{tab:lat}
+	\caption{Linear Approximation Table (LAT) for the Midori64 S-box}
+	\setlength{\tabcolsep}{8pt}
+	\vspace{12pt}
+	\input{texFiles/lat_table.tex} 
+\end{table}
+
+\textbf{Value Counts in the Linear Approximation Table (LAT)}
+This table represents the counts of each value observed in the Linear
+Approximation Table (LAT) for the Midori64 S-box.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Value} & \textbf{Count} \\
+		\hline
+		-4             & 21             \\
+		-2             & 44             \\
+		0              & 123            \\
+		2              & 52             \\
+		4              & 15             \\
+		8              & 1              \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection*{LAT Analysis}
+
+\subsubsection*{1. Linear Bias and Distribution of Values}
+\begin{itemize}
+	\item \textbf{Observation:} The values in the LAT table are spread between
+	      positive and negative numbers. A few entries show larger values such as $\pm
+		      4$ and $\pm 2$, which represent the linear bias of the approximation. Most
+	      values are closer to 0, indicating weaker linear approximations.
+	\item \textbf{Conclusion:} The distribution of values suggests that the
+	      S-box of Midori64 is somewhat resistant to linear cryptanalysis. Ideally,
+	      the values should be close to 0 for most of the entries, which is the case
+	      here, though some larger biases may still indicate potential
+	      vulnerabilities.
+\end{itemize}
+
+\subsubsection*{2. Symmetry in LAT}
+\begin{itemize}
+	\item \textbf{Observation:} The LAT is symmetric, i.e., the value at
+	      position $(i, j)$ is equal to the value at position $(j, i)$, which is
+	      expected from a well-designed S-box.
+	\item \textbf{Conclusion:} The symmetry of the LAT confirms that the
+	      Midori64 S-box behaves consistently in both directions (input to output and
+	      vice versa), which is a desirable property for cryptographic functions and
+	      indicates correctness in design.
+\end{itemize}
+
+\subsubsection*{3. Even Integer Entries in LAT}
+\begin{itemize}
+	\item \textbf{Observation:} All the entries in the LAT are even integers, as
+	      expected from a bijective S-box. This property holds true for the Midori64
+	      S-box, which confirms that the S-box is a bijection.
+	\item \textbf{Conclusion:} The fact that all LAT entries are even integers,
+	      and the first row and column (except the upper-left entry) consist of zeros,
+	      is a strong indicator that the S-box is bijective. This makes the S-box more
+	      secure against linear cryptanalysis.
+\end{itemize}
+
+\subsubsection*{4. Compliance with LAT Properties}
+\begin{itemize}
+	\item \textbf{Observation:} The first row and the first column are zeros,
+	      except for the upper-left entry, which is $2^{n-1}$, indicating that the
+	      S-box follows the LAT properties of bijective S-boxes.
+	\item \textbf{Conclusion:} The Midori64 S-box adheres to the properties
+	      expected from a bijective S-box. This is a positive feature, enhancing its
+	      cryptographic strength by ensuring that no biases are introduced through
+	      linear approximations.
+\end{itemize}
+
+
+\subsection*{Comparison with Other Ciphers}
+
+\begin{itemize}
+	\item \textbf{Group 1: AES S-box:} AES has a very well-known and well-optimized S-box
+	      with low bias in its LAT. The linear approximation values in AES are very
+	      close to 0, indicating that it is highly resistant to linear cryptanalysis.
+	\item \textbf{Group 2: PRESENT S-box:} The PRESENT cipher, similar to Midori64, uses
+	      a lightweight S-box with a differential uniformity of 4. While its LAT is
+	      less optimal than AES, it still provides decent resistance to linear
+	      cryptanalysis, making it suitable for constrained environments.
+	\item \textbf{Group 3: Midori64 S-box:} The Midori64 S-box has reasonable linear
+	      approximation properties with some biases in the LAT, but these are not
+	      excessively large. The S-box’s properties are well-suited for lightweight
+	      cryptography, where efficiency is prioritized.
+\end{itemize}
+
+\subsection*{Final Conclusion}
+
+\noindent The Midori64 S-box strikes a balance between security and efficiency,
+making it suitable for lightweight cryptographic applications. Although its LAT
+does show some biases, the values are relatively small, and the overall
+resistance to linear cryptanalysis is reasonable. The bijective nature of the
+S-box, along with its symmetry and even integer entries, further contributes to
+its security. While the Midori64 S-box may not be as optimal as the AES S-box in
+terms of linear approximation resistance, it offers a good trade-off between
+security and computational efficiency, which is crucial for lightweight
+cryptography.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Complete the assignment now
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
