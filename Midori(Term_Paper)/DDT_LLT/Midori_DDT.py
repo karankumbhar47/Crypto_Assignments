@@ -16,6 +16,7 @@ def generate_ddt(sbox):
 
 def main():
     ddt = generate_ddt(midori_sbox)
+    print(ddt)
     print(seperator)
     print("\nDifferential Distribution Table (DDT):\n")
     print_table(ddt)
