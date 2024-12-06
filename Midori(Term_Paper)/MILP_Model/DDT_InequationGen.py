@@ -1,4 +1,4 @@
-from MILP_Model.DDT_Utils import *
+from DDT_Utils import *
 from sage.all import Polyhedron
 from sage.geometry.polyhedron.representation import Inequality 
 

@@ -3,3 +3,4 @@ venv/
 ./Assignment_1/Question_12/Improvements.md
 *.bin
 *.zip
+**/__pycache__

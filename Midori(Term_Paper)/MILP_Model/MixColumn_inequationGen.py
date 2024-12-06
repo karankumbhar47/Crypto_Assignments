@@ -86,13 +86,12 @@ def convert_equations_to_flat_variables(results,level):
 def main(A_bits,level):
     results = bit_level_binary_matrix_multiplication(A_bits, B, level*4)
     flattened_equations = convert_equations_to_flat_variables(results,level*4)
-    # print(flattened_equations)
 
-    final_equations, intermediate_vars = introduce_intermediate_variables(
+    final_equations, _ = introduce_intermediate_variables(
         flattened_equations,level*8
     )
 
-    print("Final Equations with Intermediate Variables:")
+    print("Inequlity for coloumn ",level)
     for eq in final_equations:
         print(eq)
     print(len(final_equations))
