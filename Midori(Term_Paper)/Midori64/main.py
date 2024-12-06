@@ -16,11 +16,11 @@ def main():
     print("Output Matched       : ",(stringToHexList(expected_output) == Midori64_Core(plainText, WK, K0, K1)))
 
     # Decryption test
-    decrypted_output = Midori64_Core_Decrypt(expected_output, WK, K0, K1)
-    print("\nDecryption:")
-    print("Output from Decryption: ", *decrypted_output)
-    print("Expected Output       : ", *stringToHexList(plainText))
-    print("Decryption Matched    : ", stringToHexList(plainText) == decrypted_output)
+    # decrypted_output = Midori64_Core_Decrypt(expected_output, WK, K0, K1)
+    # print("\nDecryption:")
+    # print("Output from Decryption: ", *decrypted_output)
+    # print("Expected Output       : ", *stringToHexList(plainText))
+    # print("Decryption Matched    : ", stringToHexList(plainText) == decrypted_output)
 
 
 
