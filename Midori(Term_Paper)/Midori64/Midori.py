@@ -53,4 +53,3 @@ def Midori64_Core(plainText, WK, K0, K1):
     S = SubCell(S)
     Y = KeyAdd(S, WK,-1)
     return Y
-

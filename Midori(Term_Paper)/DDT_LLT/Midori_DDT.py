@@ -2,17 +2,19 @@ import numpy as np
 from codeGenerator import *
 from Midori_Utils import *
 
+
 def generate_ddt(sbox):
-    n = len(sbox)  
-    ddt = [[0] * n for _ in range(n)]  
+    n = len(sbox)
+    ddt = [[0] * n for _ in range(n)]
 
     for x1 in range(n):
         for x2 in range(n):
-            delta_in = x1 ^ x2  
-            delta_out = sbox[x1] ^ sbox[x2]  
-            ddt[delta_in][delta_out] += 1  
+            delta_in = x1 ^ x2
+            delta_out = sbox[x1] ^ sbox[x2]
+            ddt[delta_in][delta_out] += 1
 
     return ddt
+
 
 def main():
     ddt = generate_ddt(midori_sbox)
@@ -47,6 +49,5 @@ def main():
     generate_ddt_latex(ddt)
     generate_sbox_latex(midori_sbox)
 
-
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
