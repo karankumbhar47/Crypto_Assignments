@@ -1,0 +1,21 @@
+\begin{thebibliography}{99}
+
+\bibitem{zhao2020}
+H. Zhao, G. Han, L. Wang, and W. Wang, "MILP-based Differential Cryptanalysis on Round-reduced Midori64," \emph{IEEE Access}, vol. 8, pp. 1-1, 2020, doi: \url{10.1109/ACCESS.2020.2995795}.
+
+\bibitem{pal2020}
+D. Pal, V. P. Chandratreya, A. Das, and D. R. Chowdhury, "Modeling Linear and Non-linear Layers: An MILP Approach Towards Finding Differential and Impossible Differential Propagations," 2020. [Online]. Available: \url{https://www.iitkgp.ac.in}.
+
+\bibitem{boura2020}
+C. Boura and D. Coggia, "Efficient MILP Modelings for Sboxes and Linear Layers of SPN ciphers," \emph{IACR Transactions on Symmetric Cryptology}, vol. 2020, no. 3, pp. 327–361, 2020. doi: \url{10.13154/tosc.v2020.i3.327-361}.
+
+\bibitem{sun2020}
+S. Sun, L. Hu, P. Wang, K. Qiao, X. Ma, and L. Song, "Automatic Security Evaluation and (Related-key) Differential Characteristic Search: Application to SIMON, PRESENT, LBlock, DES(L) and Other Bit-oriented Block Ciphers," \emph{Proc. State Key Laboratory of Information Security}, Chinese Academy of Sciences, 2020.
+
+\bibitem{han2024}
+G. Han and H. Zhao, "Revisited Security Evaluation on Midori-64 Against Differential Cryptanalysis," \emph{Cryptographic Journal}, vol. 2024, no. 1, pp. 1–15, 2024.
+
+\bibitem{ilter2024}
+M. B. İlter and A. A. Selçuk, "MILP-aided Cryptanalysis of the FUTURE Block Cipher," \emph{Journal of Cryptology}, vol. 2024, no. 2, pp. 25–40, 2024.
+
+\end{thebibliography}
