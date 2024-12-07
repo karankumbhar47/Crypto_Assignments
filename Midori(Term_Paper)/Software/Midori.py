@@ -49,7 +49,6 @@ def InvSubCell(state):
     return state
 
 def InvShuffleCell(state):
-    # Inverse permutation indices
     invNewIndices = [0, 7, 14, 9, 5, 2, 11, 12, 15, 8, 1, 6, 10, 13, 4, 3]
     tempState = state[:]
     for i in range(16):
@@ -57,7 +56,6 @@ def InvShuffleCell(state):
     return tempState
 
 def InvMixColumn(state):
-    # Define the inverse MixColumn transformation
     cell = state[:]
     for i in range(0, 4):
         state[i * 4] = hex(int(str(cell[i * 4 + 1]), 16) ^ int(str(cell[i * 4 + 2]), 16) ^ int(str(cell[i * 4 + 3]), 16))

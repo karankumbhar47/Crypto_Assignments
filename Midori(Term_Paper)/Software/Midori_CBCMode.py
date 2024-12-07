@@ -41,10 +41,3 @@ class ECBMode:
         plaintext = self.unpad(plaintext)
         message = bytes.fromhex(plaintext).decode('utf-8')
         return message
-
-
-ecb = ECBMode(Midori64_Core, Midori64_Core_Decrypt,"687ded3b3c85b3f35b1009863e2a8cbf")
-
-message = "message random message "
-out = ecb.decrypt_ecb(ecb.encrypt_ecb(message))
-print(out==message)
