@@ -33,3 +33,12 @@ def stringToIntList(string_input):
     for i in range(len(string_input)):
         int_list.append(int(str(string_input[i]), 16))
     return int_list
+
+def messageToHexString(message):
+    hex_string = ''.join(format(ord(char), '02x') for char in message)
+    return hex_string
+
+def hexToMessageString(hex_string):
+    # Convert the hex string back to the original message
+    message = bytes.fromhex(hex_string).decode('utf-8')
+    return message

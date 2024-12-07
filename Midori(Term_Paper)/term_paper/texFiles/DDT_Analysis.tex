@@ -121,6 +121,9 @@ The DDT of the Midori64 S-box adheres to these properties, which confirms that
 the S-box is well-structured and complies with the expected cryptographic
 behaviors.
 
+\subsubsection*{6. Branch Number}
+   Branch number for midori sbox is 2.
+
 \subsubsection*{Comparative Analysis with Other Ciphers}
 \begin{table}[h!]
 	\centering
@@ -131,19 +134,19 @@ behaviors.
 	\resizebox{\textwidth}{!}{%
 		\begin{tabular}{|c|c|c|c|c|c|c|}
 			\hline
-			\textbf{Cipher Name} & \textbf{Number of 0's} & \textbf{Number of 2's} & \textbf{Number of 4's} & \textbf{Number of 16's} & \textbf{Differential Uniformity} \\ \hline
-			Pyjamask-128         & -                      & -                      & -                      & -                       & -                                \\ \hline
-			Square               & 159                    & 72                     & 24                     & 1                       & 4                                \\ \hline
-			PRESENT              & -                      & -                      & -                      & -                       & -                                \\ \hline
-			PRINCE               & -                      & -                      & -                      & -                       & -                                \\ \hline
-			KLEIN                & -                      & -                      & -                      & -                       & -                                \\ \hline
-			LED                  & -                      & -                      & -                      & -                       & -                                \\ \hline
-			BACKSHEESH           & 198                    & 0                      & 56                     & 2                       & 4                                \\ \hline
-			Midori               & 159                    & 72                     & 24                     & 1                       & 4                                \\ \hline
-			GIFT                 & -                      & -                      & -                      & -                       & -                                \\ \hline
-			PRINTcipher          & -                      & -                      & -                      & -                       & -                                \\ \hline
-			Rectangle            & -                      & -                      & -                      & -                       & -                                \\ \hline
-		\end{tabular}%
+			\textbf{Cipher Name} & \textbf{Number of 0's} & \textbf{Number of 2's} & \textbf{Number of 4's} & \textbf{Number of 16's} & \textbf{Differential Uniformity} & \textbf{Branch Number} \\ \hline
+			Pyjamask-128         & -                      & -                      & -                      & -                       & -                                & -                                \\ \hline
+			Square               & 159                    & 72                     & 24                     & 1                       & 4                                & -                                \\ \hline
+			PRESENT              & -                      & -                      & -                      & -                       & -                                & -                                \\ \hline
+			PRINCE               & -                      & -                      & -                      & -                       & -                                & -                                \\ \hline
+			KLEIN                & -                      & -                      & -                      & -                       & -                                & -                                \\ \hline
+			LED                  & -                      & -                      & -                      & -                       & -                                & -                                \\ \hline
+			BACKSHEESH           & 198                    & 0                      & 56                     & 2                       & 4                                & -                                \\ \hline
+			Midori               & 159                    & 72                     & 24                     & 1                       & 4                                & 2                               \\ \hline
+			GIFT                 & -                      & -                      & -                      & -                       & -                                & -                                \\ \hline
+			PRINTcipher          & -                      & -                      & -                      & -                       & -                                & -                                \\ \hline
+			Rectangle            & -                      & -                      & -                      & -                       & -                                & -                                \\ \hline
+		\end{tabular}%                                                                                                              
 	}
 \end{table}
 

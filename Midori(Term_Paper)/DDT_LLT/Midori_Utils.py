@@ -70,3 +70,17 @@ def pretty_print_lat(lat):
 
 def is_symmetric(matrix):
     return np.array_equal(matrix, matrix.T)
+
+
+def branch_number():
+    from sage.all import Integer
+    from sage.crypto.sbox import SBox
+
+    # Define the Midori S-box
+    midori_sbox = [Integer(0xC), Integer(0xA), Integer(0xD), Integer(0x3), Integer(0xE), 
+               Integer(0xB), Integer(0xF), Integer(0x7), Integer(0x8), Integer(0x9), 
+               Integer(0x1), Integer(0x5), Integer(0x0), Integer(0x2), Integer(0x4), Integer(0x6)]
+
+    S = SBox(midori_sbox)
+    branch_number = S.differential_branch_number()
+    return branch_number

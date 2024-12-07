@@ -42,16 +42,6 @@ def MixColumn(state):
         state[i*4+3]=hex(int(str(cell[i*4]),16) ^ int(str(cell[i*4+1]),16)^int(str(cell[i*4+2]),16))
     return state
 
-def Midori64_Core(plainText, WK, K0, K1):
-    S = KeyAdd(plainText, WK,-1)
-    for i in range(15):
-        S = SubCell(S)
-        S = ShuffleCell(S)
-        S = MixColumn(S)
-        S = KeyAdd(S, stringToIntList(K0 if i%2==0 else K1), i)
-    S = SubCell(S)
-    Y = KeyAdd(S, WK,-1)
-    return Y
 
 def InvSubCell(state):
     for i in range(16):
@@ -76,7 +66,20 @@ def InvMixColumn(state):
         state[i * 4 + 3] = hex(int(str(cell[i * 4]), 16) ^ int(str(cell[i * 4 + 1]), 16) ^ int(str(cell[i * 4 + 2]), 16))
     return state
 
+def Midori64_Core(plainText, WK, K0, K1):
+    S = KeyAdd(plainText, WK,-1)
+    for i in range(15):
+        S = SubCell(S)
+        S = ShuffleCell(S)
+        S = MixColumn(S)
+        S = KeyAdd(S, stringToIntList(K0 if i%2==0 else K1), i)
+    S = SubCell(S)
+    Y = KeyAdd(S, WK,-1)
+    hex_string = ''.join(hex_val[2:] for hex_val in Y)
+    return hex_string
+
 def Midori64_Core_Decrypt(cipherText, WK, K0, K1):
+    cipherText = stringToHexList(cipherText)
     S = KeyAdd(cipherText, WK, -1)
     S = InvSubCell(S)
 
@@ -87,4 +90,5 @@ def Midori64_Core_Decrypt(cipherText, WK, K0, K1):
         S = InvSubCell(S)
 
     plainText = KeyAdd(S, WK, -1)
-    return plainText
+    hex_string = ''.join(hex_val[2:] for hex_val in plainText)
+    return hex_string
