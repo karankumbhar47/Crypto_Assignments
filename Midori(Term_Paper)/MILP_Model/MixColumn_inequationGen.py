@@ -38,7 +38,7 @@ def introduce_intermediate_variables(flattened_equations,level):
         terms = rhs.split(" + ")
 
         if len(terms) > 2:
-            t_var = f"t{len(intermediate_vars)}"
+            t_var = f"t{len(intermediate_vars)+level}"
             intermediate_vars[t_var] = " + ".join([terms[0], terms[2]])
             rhs = t_var + " + " + " + ".join([terms[1]])
             new_equations.append(f"{t_var} = {intermediate_vars[t_var]}")
